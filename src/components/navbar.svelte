@@ -17,6 +17,7 @@
       <button
         on:click={() => {
           changePage("map");
+          showMenu = false;
         }}
         class="text-lg text-gray-900 rounded-lg focus:outline-none focus:shadow-outline"
       >
@@ -52,6 +53,7 @@
       <button
         on:click={() => {
           changePage("about");
+          showMenu = false;
         }}
         class="px-4 py-2 mt-2 text-sm text-left font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
       >
@@ -60,6 +62,7 @@
       <button
         on:click={() => {
           changePage("howToHelp");
+          showMenu = false;
         }}
         class="px-4 py-2 mt-2 text-sm text-left font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
       >
@@ -68,6 +71,7 @@
       <button
         on:click={() => {
           changePage("dataProtection");
+          showMenu = false;
         }}
         class="px-4 py-2 mt-2 text-sm text-left font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
       >

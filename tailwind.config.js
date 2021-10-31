@@ -12,6 +12,9 @@ module.exports = {
       fontFamily: {
         sans: ["DM Sans", "sans-serif"],
       },
+      spacing: {
+        '4/5-screen': 'calc(100vh - 5rem)',
+      },
       colors: {
         "prisma-red": {
           50: "#ff8989",

@@ -7,7 +7,7 @@
   class="flex bg-purple-100 rounded-lg p-4 mb-4 text-sm text-prisma-purple-300"
 >
   <div>
-    <span class="font-medium">{title}</span>
+    <span class="font-bold">{title}</span>
     {text}
   </div>
 </div>

@@ -1,6 +1,8 @@
 <script lang="ts">
   import { changePage } from "../stores";
 
+  export let showInfoModal;
+
   let showMenu = false;
   const toggleMenu = () => {
     showMenu = !showMenu;
@@ -61,12 +63,12 @@
       </button>
       <button
         on:click={() => {
-          changePage("howToHelp");
+          showInfoModal = true;
           showMenu = false;
         }}
         class="px-4 py-2 mt-2 text-sm text-left font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
       >
-        Cum poti ajuta
+        Cum poți ajuta
       </button>
       <button
         on:click={() => {
@@ -75,7 +77,7 @@
         }}
         class="px-4 py-2 mt-2 text-sm text-left font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
       >
-        Protectia Datelor
+        Protecția Datelor
       </button>
       <a
         href="https://www.prisma-safety.com"
@@ -83,7 +85,7 @@
         rel="noopener"
         class="px-4 py-2 mt-2 text-sm text-left font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 text-prisma-purple-500 hover:text-prisma-purple-600 focus:text-prisma-purple-600 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
       >
-        Afla mai multe despre Prisma
+        Află mai multe despre Prisma
       </a>
     </nav>
   </div>

@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-
 <script lang="ts">
   import Navbar from "./components/navbar.svelte";
   import About from "./screens/about.svelte";
@@ -22,10 +21,12 @@ limitations under the License.
   import Map from "./screens/map.svelte";
 
   import { currentPage } from "./stores";
+
+  let showInfoModal;
 </script>
 
 <main class="antialiased">
-  <Navbar />
+  <Navbar bind:showInfoModal />
 
   {#if $currentPage == "about"}
     <About />
@@ -34,7 +35,7 @@ limitations under the License.
   {:else if $currentPage == "dataProtection"}
     <DataProtection />
   {:else}
-    <Map />
+    <Map bind:showInfoModal/>
   {/if}
 </main>
 

@@ -54,11 +54,11 @@ unui proiect poate fi clarificată în detaliu de către întreținătorii proie
 ## Condiții de aplicare
 
 Acțiunile abuzive, hărțuitoare sau considerate neadecvate pot fi raportate prin
-contactarea echipei proiectului la adresa [INSERAȚI ADRESA DE EMAIL]. Toate plângerile
-vor fi analizate și investigate și vor rezulta într-un răspuns care este necesar și
-adecvat circumstanțelor. Echipa proiectului este obligată la păstrarea confidentialității
-persoanei care raportează un incident. Mai multe criterii și condiții de aplicare pot fi
-specificate separat.
+contactarea echipei proiectului la adresa [prisma.ro.official@gmail.com](mailto:prisma.ro.official@gmail.com).
+Toate plângerile vor fi analizate și investigate și vor rezulta într-un răspuns care 
+este necesar și adecvat circumstanțelor. Echipa proiectului este obligată la păstrarea 
+confidentialității persoanei care raportează un incident. Mai multe criterii și 
+condiții de aplicare pot fi specificate separat.
 
 Întreținătorii proiectului care nu respectă și nu aplică Codul de Conduită în bună
 credință, ar putea suferi repercusiuni temporare sau permanente determinate de către

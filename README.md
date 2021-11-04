@@ -1,7 +1,10 @@
 # prisma-open-reports
-Portal for report submissions
+Public portal for report submissions. **[Submit a report](https://reports.prisma-safety.com)**.
 
 ## Data Collection and Processing Agreement
+
+- Collected data shall be entirely anonymous _(Do not collect any personally identifiable data)_
+
 - You may find the agreement [here](public/docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf)
 
 ---

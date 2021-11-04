@@ -1,11 +1,12 @@
 # prisma-open-reports
+
 Public portal for report submissions. **[Submit a report](https://reports.prisma-safety.com)**.
 
 ## Data Collection and Processing Agreement
 
-- Collected data shall be entirely anonymous _(Do not collect any personally identifiable data)_
+- Collected data shall be entirely anonymous _(Do not collect any personally identifiable data)_.
 
-- You may find the agreement [here](public/docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf)
+- You may find the agreement [here](public/docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf).
 
 ## Deployment status
 
@@ -18,10 +19,22 @@ Public portal for report submissions. **[Submit a report](https://reports.prisma
 ---
 
 ## Contributors
+
 - David Pescariu - [Prisma](https://github.com/prisma-ro)
 - Raul Popa - [Prisma](https://github.com/prisma-ro)
 
+## Contributing Guide
+
+If you wish to contribute to generate_licenses please see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Code of Conduct
+
+Please respect our Code of Conduct. It can be found [here](CODE_OF_CONDUCT.md).
+
+---
+
 ## LICENSE
+
 ```
 Copyright 2021 Prisma
 

@@ -82,7 +82,7 @@
         lng={markerOptions.long}
         lat={markerOptions.lat}
         popup={false}
-        color="#462255"
+        color="#AA4465"
       />
     {/if}
   </Map>

@@ -1,3 +1,3 @@
 /// <reference types="svelte" />
 
-type PrismaPage = 'map' | 'about' | 'howToHelp' | 'dataProtection';
+type PrismaPage = 'map' | 'about' | 'dataProtection';

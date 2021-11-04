@@ -17,7 +17,6 @@ limitations under the License.
   import Navbar from "./components/navbar.svelte";
   import About from "./screens/about.svelte";
   import DataProtection from "./screens/dataProtection.svelte";
-  import HowToHelp from "./screens/howToHelp.svelte";
   import Map from "./screens/map.svelte";
 
   import { currentPage } from "./stores";
@@ -30,8 +29,6 @@ limitations under the License.
 
   {#if $currentPage == "about"}
     <About />
-  {:else if $currentPage == "howToHelp"}
-    <HowToHelp />
   {:else if $currentPage == "dataProtection"}
     <DataProtection />
   {:else}

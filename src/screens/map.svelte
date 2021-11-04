@@ -3,7 +3,7 @@
   import { Map, Marker } from "@beyonk/svelte-mapbox";
 
   import IntroModal from "../components/introModal.svelte";
-  import Step1Controls from "../components/step1Controls.svelte";
+  import StepOne from "../components/stepOne.svelte";
 
   export let showInfoModal = false;
 
@@ -51,7 +51,7 @@
 {/if}
 
 {#if markerOptions.exists}
-  <Step1Controls
+  <StepOne
     okCallback={() => {
       alert('Work in progress');
     }}

@@ -7,10 +7,19 @@ Public portal for report submissions. **[Submit a report](https://reports.prisma
 
 - You may find the agreement [here](public/docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf)
 
+## Deployment status
+
+<p align=center>
+    <a href="https://app.netlify.com/sites/prisma-open-reports/deploys">
+        <img src="https://api.netlify.com/api/v1/badges/90d2da5b-38fb-450d-82a3-43503f77b9b4/deploy-status" alt="Deploy Badge" />
+    </a>
+</p>
+
 ---
 
 ## Contributors
 - David Pescariu - [Prisma](https://github.com/prisma-ro)
+- Raul Popa - [Prisma](https://github.com/prisma-ro)
 
 ## LICENSE
 ```

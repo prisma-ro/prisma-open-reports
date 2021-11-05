@@ -2,8 +2,10 @@
   import { onMount } from "svelte";
   import { Map, Marker } from "@beyonk/svelte-mapbox";
 
+  import { currentStep } from "../stores";
   import IntroModal from "../components/introModal.svelte";
   import StepOne from "../components/stepOne.svelte";
+  import StepTwo from "../components/stepTwo.svelte";
 
   export let showInfoModal = false;
 
@@ -50,13 +52,22 @@
   <IntroModal bind:modalShown={showInfoModal} />
 {/if}
 
-{#if markerOptions.exists}
+{#if markerOptions.exists && $currentStep == 1}
   <StepOne
     okCallback={() => {
-      alert('Work in progress');
+      currentStep.set(2);
     }}
     cancelCallback={() => {
       markerOptions.exists = false;
+    }}
+  />
+{:else if $currentStep == 2}
+  <StepTwo
+    okCallback={() => {
+      alert("Work in progress");
+    }}
+    cancelCallback={() => {
+      currentStep.set(1);
     }}
   />
 {/if}

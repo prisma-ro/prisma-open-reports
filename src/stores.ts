@@ -5,4 +5,4 @@ export const changePage = (newPage: PrismaPage) => {
   currentPage.set(newPage);
 }
 
-export const currentStep: Writable<number> = writable(2);
+export const currentStep: Writable<number> = writable(1);

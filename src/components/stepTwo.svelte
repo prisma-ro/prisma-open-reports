@@ -1,13 +1,15 @@
 <script lang="ts">
   import Datepicker from "./datepicker.svelte";
-  import HCaptcha, { CaptchaTheme } from "./HCaptcha.svelte";
   import StepModal from "./stepModal.svelte";
   import Timepicker from "./timepicker.svelte";
 
-  let captcha;
+  let selectedDate: Date;
+  let selectedTime: string;
+  let honeyPot: string;
+  let type: string;
+  let details: string;
 
-  export let selectedDate;
-  export let selectedTime;
+  export let data: ReportData;
 
   export let cancelCallback: () => any;
   export let okCallback: () => any;
@@ -21,6 +23,17 @@
           Te rugăm sa ne mai dai câteva detalii despre incidentul respectiv.
         </p>
         <form class="w-full mt-2 max-w-sm">
+          <!-- Honeypot -->
+          <label class="hidden" aria-hidden="true" for="c@FgB*9Z">Email</label>
+          <input
+            class="hidden"
+            aria-hidden="true"
+            type="text"
+            id="c@FgB*9Z"
+            bind:value={honeyPot}
+          />
+          <!-- END:Honeypot -->
+
           <div class="md:flex md:items-center mb-6">
             <div class="md:w-1/3">
               <label
@@ -36,6 +49,7 @@
                 id="incident_type"
                 type="text"
                 placeholder="ex: Urmărire, Catcalling, etc"
+                bind:value={type}
               />
             </div>
           </div>
@@ -51,16 +65,14 @@
             <div class="md:w-2/3">
               <Datepicker bind:selectedDate />
               <div class="flex flex-row mx-8 mt-3">
-                <div class="w-1/3 mt-2 text-gray-500">
-                  La ora:
-                </div>
+                <div class="w-1/3 mt-2 text-gray-500">La ora:</div>
                 <div class="w-2/3">
                   <Timepicker bind:time={selectedTime} />
                 </div>
               </div>
             </div>
           </div>
-          <div class="md:flex md:items-center mb-6">
+          <div class="md:flex md:items-center">
             <div class="md:w-1/3">
               <label
                 class="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4"
@@ -73,25 +85,11 @@
               <textarea
                 class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 id="incident_details"
-                placeholder="Optional"
+                placeholder="Optional, max. 1000 caractere"
+                maxlength="1000"
+                bind:value={details}
               />
             </div>
-          </div>
-          <div class="md:flex md:items-center">
-            <HCaptcha
-              bind:this={captcha}
-              sitekey={"d3697c3f-8f84-48f6-970d-861bf776e000"} 
-              theme={CaptchaTheme.LIGHT}
-              apihost={'https://hcaptcha.com'}
-              hl={'ro'}
-              reCaptchaCompat={null}
-              on:success={(e) => {
-                console.log(e);
-              }}
-              on:error={() => {
-                captcha.reset();
-              }}
-            />
           </div>
         </form>
       </div>
@@ -103,7 +101,16 @@
     <button
       type="button"
       class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-prisma-purple-500 text-base font-medium text-white hover:bg-prisma-purple-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-prisma-purple-300 sm:ml-3 sm:w-auto sm:text-sm"
-      on:click={okCallback}
+      on:click={() => {
+        data = {
+          date: selectedDate,
+          time: selectedTime,
+          honeyPot,
+          type,
+          details,
+        };
+        okCallback();
+      }}
     >
       Trimite!
     </button>

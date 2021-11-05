@@ -46,6 +46,11 @@
       });
     }
   };
+
+  let reportData: ReportData;
+  const submit = () => {
+    console.log(reportData);
+  };
 </script>
 
 {#if showInfoModal}
@@ -63,8 +68,9 @@
   />
 {:else if $currentStep == 2}
   <StepTwo
+    bind:data={reportData}
     okCallback={() => {
-      alert("Work in progress");
+      submit();
     }}
     cancelCallback={() => {
       currentStep.set(1);

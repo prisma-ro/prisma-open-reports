@@ -1,8 +1,12 @@
 <script lang="ts">
-  let hours: string;
-  let minutes: string;
+  let hours: string = '1';
+  let minutes: string = '00';
 
-  export const time = `${hours}.${minutes}`;
+  export let time: string;
+
+  const setTime = () => {
+    time = `${hours}.${minutes}`;
+  }
 </script>
 
 <div
@@ -13,19 +17,25 @@
       name="hours"
       class="bg-transparent appearance-none outline-none"
       bind:value={hours}
+      on:change={setTime}
     >
-      {#each [...[...Array(24).keys()].map((e) => e + 1)] as hr}
-        <option value={hr}>{hr}</option>
+      <!-- vvv Used to artificially make the select dropdown wider -->
+      <option value="wwwww" hidden aria-hidden="true">wwwww</option>
+      {#each [...[...Array(24).keys()].map((e) => (e + 1).toString())] as hr}
+        <option class="block w-10 text-center" value={hr}>{hr}</option>
       {/each}
     </select>
-    <span class="text-xl mr-3">:</span>
+    <span class="text-xl">:</span>
     <select
       name="minutes"
       class="bg-transparent appearance-none outline-none"
       bind:value={minutes}
+      on:change={setTime}
     >
+      <!-- vvv Used to artificially make the select dropdown wider -->
+      <option value="wwwww" hidden aria-hidden="true">wwwww</option>
       {#each ["00", "15", "30", "45"] as min}
-        <option value={min}>{min}</option>
+        <option class="block w-10 text-center" value={min}>{min}</option>
       {/each}
     </select>
   </div>

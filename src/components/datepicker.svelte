@@ -69,7 +69,7 @@
     <option class="text-gray-700 block text-sm" selected disabled hidden>
       An
     </option>
-    {#each [...[...Array(150).keys()].map((e) => new Date().getFullYear() - e)] as y}
+    {#each [...[...Array(50).keys()].map((e) => new Date().getFullYear() - e)] as y}
       <option class="text-gray-700 block text-sm">
         {y}
       </option>

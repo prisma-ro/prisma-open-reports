@@ -33,7 +33,7 @@
     on:change={onchange}
   >
     <option class="text-gray-700 block text-sm" selected disabled hidden>
-      Day
+      Zi
     </option>
     {#each [...[...Array(31).keys()].map((e) => e + 1)] as d}
       <option class="text-gray-700 block text-sm">
@@ -50,7 +50,7 @@
     on:change={onchange}
   >
     <option class="text-gray-700 block text-sm" selected disabled hidden>
-      Month
+      Lună
     </option>
     {#each [...[...Array(12).keys()].map((e) => e + 1)] as m}
       <option class="text-gray-700 block text-sm">
@@ -67,7 +67,7 @@
     on:change={onchange}
   >
     <option class="text-gray-700 block text-sm" selected disabled hidden>
-      Year
+      An
     </option>
     {#each [...[...Array(150).keys()].map((e) => new Date().getFullYear() - e)] as y}
       <option class="text-gray-700 block text-sm">

@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --host --no-clear",
+    "start": "sirv public --host 127.0.0.1 --no-clear",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "pikaday": "^1.8.2",
-    "sirv-cli": "^1.0.0"
+    "sirv-cli": "^1.0.0",
+    "svelte-hcaptcha": "^0.1.0"
   }
 }

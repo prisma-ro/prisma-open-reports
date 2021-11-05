@@ -2,7 +2,7 @@
   let hours: string;
   let minutes: string;
 
-  export let time = `${hours}.${minutes}`;
+  export const time = `${hours}.${minutes}`;
 </script>
 
 <div

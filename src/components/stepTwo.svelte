@@ -1,7 +1,10 @@
 <script lang="ts">
   import Datepicker from "./datepicker.svelte";
+  import HCaptcha, { CaptchaTheme } from "./HCaptcha.svelte";
   import StepModal from "./stepModal.svelte";
   import Timepicker from "./timepicker.svelte";
+
+  let captcha;
 
   export let selectedDate;
   export let selectedTime;
@@ -57,7 +60,7 @@
               </div>
             </div>
           </div>
-          <div class="md:flex md:items-center">
+          <div class="md:flex md:items-center mb-6">
             <div class="md:w-1/3">
               <label
                 class="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4"
@@ -73,6 +76,22 @@
                 placeholder="Optional"
               />
             </div>
+          </div>
+          <div class="md:flex md:items-center">
+            <HCaptcha
+              bind:this={captcha}
+              sitekey={"d3697c3f-8f84-48f6-970d-861bf776e000"} 
+              theme={CaptchaTheme.LIGHT}
+              apihost={'https://hcaptcha.com'}
+              hl={'ro'}
+              reCaptchaCompat={null}
+              on:success={(e) => {
+                console.log(e);
+              }}
+              on:error={() => {
+                captcha.reset();
+              }}
+            />
           </div>
         </form>
       </div>

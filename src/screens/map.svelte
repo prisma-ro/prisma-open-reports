@@ -1,13 +1,10 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { Map, Marker } from "@beyonk/svelte-mapbox";
 
   import { currentStep } from "../stores";
-  import IntroModal from "../components/introModal.svelte";
   import StepOne from "../components/stepOne.svelte";
   import StepTwo from "../components/stepTwo.svelte";
-
-  export let showInfoModal = false;
+  import StepThree from "../components/stepThree.svelte";
 
   let mapComponent: Map;
   let markerOptions = {
@@ -15,22 +12,12 @@
     lat: 0,
     long: 0,
   };
-  const oneMonth = 60 * 60 * 24 * 30 * 1000;
-
-  onMount(() => {
-    const shownIntroAt = window.localStorage.getItem("shownIntroAt");
-    if (
-      shownIntroAt == null ||
-      new Date().getTime() - new Date(shownIntroAt).getTime() > oneMonth
-    ) {
-      document.querySelector("body").classList.add("overflow-hidden");
-      showInfoModal = true;
-    }
-
-    console.log(mapComponent);
-  });
+  let reportData: ReportData;
+  let ignoreClick = false;
 
   const onMapClick = (e: any) => {
+    if (ignoreClick) return;
+
     if (e instanceof CustomEvent) {
       // console.log(`Map clicked @ ${e.detail.lat} / ${e.detail.lng}`);
 
@@ -47,19 +34,16 @@
     }
   };
 
-  let reportData: ReportData;
   const submit = () => {
     console.log(reportData);
+    currentStep.set(3);
   };
 </script>
-
-{#if showInfoModal}
-  <IntroModal bind:modalShown={showInfoModal} />
-{/if}
 
 {#if markerOptions.exists && $currentStep == 1}
   <StepOne
     okCallback={() => {
+      ignoreClick = true;
       currentStep.set(2);
     }}
     cancelCallback={() => {
@@ -73,6 +57,15 @@
       submit();
     }}
     cancelCallback={() => {
+      currentStep.set(1);
+      ignoreClick = false;
+    }}
+  />
+{:else if $currentStep == 3}
+  <StepThree 
+    okCallback={() => {
+      markerOptions.exists = false;
+      ignoreClick = false;
       currentStep.set(1);
     }}
   />

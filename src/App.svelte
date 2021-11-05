@@ -19,10 +19,30 @@ limitations under the License.
   import DataProtection from "./screens/dataProtection.svelte";
   import Map from "./screens/map.svelte";
 
+  import IntroModal from "./components/introModal.svelte";
+
+  import { onMount } from "svelte";
   import { currentPage } from "./stores";
 
-  let showInfoModal;
+  let showInfoModal = false;
+
+  const oneMonth = 60 * 60 * 24 * 30 * 1000;
+
+  onMount(() => {
+    const shownIntroAt = window.localStorage.getItem("shownIntroAt");
+    if (
+      shownIntroAt == null ||
+      new Date().getTime() - new Date(shownIntroAt).getTime() > oneMonth
+    ) {
+      document.querySelector("body").classList.add("overflow-hidden");
+      showInfoModal = true;
+    }
+  });
 </script>
+
+{#if showInfoModal}
+  <IntroModal bind:modalShown={showInfoModal} />
+{/if}
 
 <main class="antialiased">
   <Navbar bind:showInfoModal />
@@ -32,7 +52,7 @@ limitations under the License.
   {:else if $currentPage == "dataProtection"}
     <DataProtection />
   {:else}
-    <Map bind:showInfoModal/>
+    <Map />
   {/if}
 </main>
 

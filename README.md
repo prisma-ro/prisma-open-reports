@@ -18,6 +18,12 @@ Public portal for report submissions. **[Submit a report](https://reports.prisma
 
 ---
 
+## Folder Structure
+
+- `functions` - serverless functions used to process submitted reports
+- `public` - public content, ie: images
+- `src` - Svelte website source
+
 ## Contributors
 
 - David Pescariu - [Prisma](https://github.com/prisma-ro)

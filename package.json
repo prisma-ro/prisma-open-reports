@@ -32,6 +32,8 @@
     "typescript": "^4.0.0"
   },
   "dependencies": {
+    "@netlify/functions": "^0.9.0",
+    "netlify-cli": "^7.0.0",
     "pikaday": "^1.8.2",
     "sirv-cli": "^1.0.0"
   }

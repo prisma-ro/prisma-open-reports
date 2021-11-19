@@ -33,6 +33,8 @@
   },
   "dependencies": {
     "@netlify/functions": "^0.9.0",
+    "dotenv": "^10.0.0",
+    "firebase-admin": "^10.0.0",
     "netlify-cli": "^7.0.0",
     "pikaday": "^1.8.2",
     "sirv-cli": "^1.0.0"

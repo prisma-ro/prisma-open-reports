@@ -1,16 +1,16 @@
 /**
  * @copyright Copyright 2021 Prisma
- * 
+ *
  * @description Common functions & Interfaces
- * 
+ *
  * @license Apache 2.0
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,18 +20,31 @@
 
 import { Response } from "@netlify/functions/dist/function/response";
 
+import { Credential, cert } from "firebase-admin/app";
+
 export interface ReportSubmission {
   incidentDetails: {
-    "type": string,
-    "date": string,
-    "time": string,
-    "details": string | null,
-  },
+    type: string;
+    date: string;
+    time: string;
+    details: string | null;
+  };
   reportDetails: {
-    honeyPot: string | null,
-    sentAt: string
-  }
+    honeyPot: string | null;
+    sentAt: string;
+  };
 }
+
+export const createCert = (raw: string): Credential => {
+  return cert(JSON.parse(Buffer.from(raw, "base64").toString("ascii")));
+};
+
+export const isDataInBounds = (data: ReportSubmission): boolean => {
+  return (
+    data.incidentDetails.type.length < 50 ||
+    (data.incidentDetails.details ?? "").length < 2000
+  );
+};
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",

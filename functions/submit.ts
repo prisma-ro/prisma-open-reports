@@ -1,7 +1,7 @@
 /**
  * @copyright Copyright 2021 Prisma
  *
- * @description Handle report submissions and add them to a Firestore DB
+ * @description Handle report submissions and add them to a Firestore database
  *
  * @license Apache 2.0
  *
@@ -22,25 +22,43 @@ import { Handler } from "@netlify/functions";
 import { Context } from "@netlify/functions/dist/function/context";
 import { Event } from "@netlify/functions/dist/function/event";
 
+import * as admin from "firebase-admin";
+import path from "path";
+
 import {
+  createCert,
   errResponse,
+  isDataInBounds,
   okResponse,
   preflightResponse,
   ReportSubmission,
 } from "./_lib";
-
-const isDataInBounds = (data: ReportSubmission): boolean => {
-  return (
-    data.incidentDetails.type.length < 50 ||
-    (data.incidentDetails.details ?? "").length < 2000
-  );
-};
 
 const handler: Handler = async (event: Event, context: Context) => {
   if (event.httpMethod === "OPTIONS") {
     return preflightResponse();
   } else if (event.httpMethod === "POST") {
     let data: ReportSubmission;
+    let creds: admin.credential.Credential;
+
+    /**
+     * Get firebase authentication data, either by using the FIREBASE_ADMIN_CREDS
+     * env var (in production), or by using the DEV_FIREBASE_ADMIN_CREDS env var,
+     * read from the '.env' file in the 'functions/' directory.
+     */
+    if (process.env.FIREBASE_ADMIN_CREDS) {
+      creds = createCert(process.env.FIREBASE_ADMIN_CREDS);
+    } else {
+      require("dotenv").config({
+        path: path.resolve(path.join(process.cwd(), "functions/.env")),
+      });
+      creds = createCert(process.env.DEV_FIREBASE_ADMIN_CREDS ?? "");
+    }
+
+    // Init firebase
+    if (admin.apps.length == 0) {
+      admin.initializeApp({ credential: creds });
+    }
 
     try {
       data = JSON.parse(event.body ?? "");
@@ -54,8 +72,18 @@ const handler: Handler = async (event: Event, context: Context) => {
       return errResponse("Length of fields exced max limit.", 413);
     }
 
-    // Valid data, proccess:
-    return okResponse(data);
+    // Valid data, continue
+
+    const db = admin.firestore();
+    const ref = await db
+      .collection("open_reports")
+      .doc("XhUfgMNKuSMZlvnReILo")
+      .get();
+
+    return okResponse({
+      fb: ref.data(),
+      body: data,
+    });
   }
 
   return errResponse("invalid_method", 405);

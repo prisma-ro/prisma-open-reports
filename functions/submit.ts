@@ -28,6 +28,7 @@ import path from "path";
 import {
   createCert,
   errResponse,
+  hasRequiredData,
   isDataInBounds,
   okResponse,
   preflightResponse,
@@ -66,24 +67,19 @@ const handler: Handler = async (event: Event, context: Context) => {
       return errResponse(`Failed to parse body: ${e}`);
     }
 
-    if (data.reportDetails.honeyPot !== null) {
+    if (data.reportDetails?.honeyPot !== null) {
       return errResponse("beep boop", 418);
+    } else if (!hasRequiredData(data)) {
+      return errResponse("Malformed request, missing data", 400);
     } else if (!isDataInBounds(data)) {
       return errResponse("Length of fields exced max limit.", 413);
     }
 
     // Valid data, continue
-
     const db = admin.firestore();
-    const ref = await db
-      .collection("open_reports")
-      .doc("XhUfgMNKuSMZlvnReILo")
-      .get();
+    const ref = await db.collection("open_reports").add(data);
 
-    return okResponse({
-      fb: ref.data(),
-      body: data,
-    });
+    return okResponse(ref.id);
   }
 
   return errResponse("invalid_method", 405);

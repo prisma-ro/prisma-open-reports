@@ -46,6 +46,15 @@ export const isDataInBounds = (data: ReportSubmission): boolean => {
   );
 };
 
+export const hasRequiredData = (data: ReportSubmission): boolean => {
+  return (
+    data.incidentDetails &&
+    data.incidentDetails.type !== undefined &&
+    data.incidentDetails.date !== undefined &&
+    data.incidentDetails.time !== undefined
+  );
+};
+
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "OPTIONS, GET, POST, DELETE",

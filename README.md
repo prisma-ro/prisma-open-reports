@@ -21,6 +21,7 @@ Public portal for report submissions. **[Submit a report](https://reports.prisma
 ## Folder Structure
 
 - `functions` - serverless functions used to process submitted reports
+    - An `.env` file is required for the 'submit' endpoint, see [`.env.demo`](functions/.env.demo) for details.
 - `public` - public content, ie: images
 - `src` - Svelte website source
 

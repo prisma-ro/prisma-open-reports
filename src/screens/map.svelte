@@ -20,6 +20,7 @@
   let reportData: ReportData;
   let hasError: boolean = false;
   let errorText: string = "";
+  let isLoading = false;
 
   let ignoreClick = false;
 
@@ -50,11 +51,21 @@
       return;
     }
 
-    await APIService.submitReport(reportData, [
+    isLoading = true;
+
+    const success = await APIService.submitReport(reportData, [
       markerOptions.lat,
       markerOptions.long,
     ]);
-    currentStep.set(3);
+
+    isLoading = false;
+
+    if (success) {
+      currentStep.set(3);
+    } else {
+      errorText = "Ceva nu a mers bine...";
+      hasError = true;
+    }
   };
 </script>
 
@@ -73,10 +84,13 @@
     bind:data={reportData}
     bind:error={errorText}
     bind:showError={hasError}
+    bind:isLoading
     okCallback={() => {
+      if (isLoading) return;
       submit();
     }}
     cancelCallback={() => {
+      if (isLoading) return;
       currentStep.set(1);
       ignoreClick = false;
     }}

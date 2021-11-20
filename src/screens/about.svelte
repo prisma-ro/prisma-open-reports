@@ -1,3 +1,12 @@
+<script lang="ts">
+  import { onMount } from "svelte";
+  import { MixpanelService } from "../lib/mixpanel";
+
+  onMount(() => {
+    MixpanelService.event("Page View", { page: "Data Protection" });
+  });
+</script>
+
 <section class="mt-32 mx-4 md:mx-64">
   <h1
     class="font-extrabold leading-10 tracking-tight text-center text-gray-900 sm:leading-none"

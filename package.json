@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "rollup -c",
-    "dev": "netlify dev",
+    "dev": "rollup -c -w",
     "start": "sirv public --host --no-clear",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },

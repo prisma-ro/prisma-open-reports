@@ -1,13 +1,19 @@
 <script lang="ts">
   import { Map, Marker } from "@beyonk/svelte-mapbox";
 
+  import { onMount } from "svelte";
   import { currentStep } from "../stores";
   import { APIService } from "../lib/apiService";
   import { validateReportData } from "../lib/validators";
+  import { MixpanelService } from "../lib/mixpanel";
 
   import StepOne from "../components/stepOne.svelte";
   import StepTwo from "../components/stepTwo.svelte";
   import StepThree from "../components/stepThree.svelte";
+
+  onMount(() => {
+    MixpanelService.event('Page View', { page: 'Map' });
+  });
 
   /** bounding of the @beyonk/svelte-mapbox Map component */
   let mapComponent: any;
@@ -63,7 +69,7 @@
     if (success) {
       currentStep.set(3);
     } else {
-      errorText = "Ceva nu a mers bine...";
+      errorText = "Ceva nu a mers bine... Urmărim aceste erori automat, dar ne poți contacta dacă problema persistă!";
       hasError = true;
     }
   };
@@ -91,6 +97,7 @@
     }}
     cancelCallback={() => {
       if (isLoading) return;
+      MixpanelService.event("Cancelled Report");
       currentStep.set(1);
       ignoreClick = false;
     }}

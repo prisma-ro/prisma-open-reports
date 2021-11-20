@@ -10,11 +10,14 @@ export class MixpanelService {
   static init() {
     if (window.localStorage.getItem("acceptedCookies")) {
       mixpanel.init(this.MIXPANEL_TOKEN, {
-        debug: true,
+        debug: window.location.hostname !== "reports.prisma-safety.com",
+        persistence_name: '_prisma_statistics',
       });
 
       // @ts-expect-error
       window.PRISMA_STAT_INIT = true;
+
+      console.log("Initialized Mixpanel.");
     } else {
       console.log("User hasn't enabled cookies; do not init.");
     }
@@ -22,7 +25,7 @@ export class MixpanelService {
 
   /**
    * Track an event or an error.
-   * 
+   *
    * @param name Name of the event. @see EventName for event name list.
    * @param additional Any additional params. Defaults to `undefined`
    */

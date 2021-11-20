@@ -30,13 +30,16 @@ limitations under the License.
   const oneMonth = 60 * 60 * 24 * 30 * 1000;
 
   onMount(() => {
-    const shownIntroAt = window.localStorage.getItem("shownIntroAt");
+    const shownIntroAt = window.localStorage.getItem("shownIntroAt_v2");
     if (
       shownIntroAt == null ||
       new Date().getTime() - new Date(shownIntroAt).getTime() > oneMonth
     ) {
       document.querySelector("body")?.classList.add("overflow-hidden");
       showInfoModal = true;
+
+      // Revoke cookie consent
+      window.localStorage.removeItem("acceptedCookies");
     }
 
     MixpanelService.init();

@@ -9,7 +9,7 @@
     document.querySelector("body")?.classList.remove("overflow-hidden");
     modalShown = false;
 
-    window.localStorage.setItem("shownIntroAt", new Date().toISOString());
+    window.localStorage.setItem("shownIntroAt_v2", new Date().toISOString());
 
     if (acceptCookies) {
       window.localStorage.setItem(

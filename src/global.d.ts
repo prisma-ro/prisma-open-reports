@@ -5,7 +5,7 @@ declare module '@beyonk/svelte-mapbox';
 
 type PrismaPage = 'map' | 'about' | 'dataProtection';
 
-type EventName = 'New Report' | 'Cancelled Report' | 'Error';
+type EventName = 'Page View' | 'New Report' | 'Cancelled Report' | 'Error';
 
 interface ReportData {
   date: Date;

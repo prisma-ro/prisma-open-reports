@@ -97,41 +97,41 @@
 
               <hr class="my-2" />
 
-              <p class="text-sm text-gray-500 font-bold">
+              <p class="text-sm text-gray-500">
                 Prin apăsarea butonului 'Ok' îți exprimi acordul ca Prisma să
                 stocheze cookie-uri folosite pentru statistici pe device-ul tău.
-                Poți consulta Politica noastră de Confidențialitate
-                <a
-                  href="https://www.prisma-safety.com/privacy"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  aici
-                </a>
               </p>
-
-              <p
-                class="mt-2 text-sm text-prisma-purple-500 font-bold cursor-pointer"
-                on:click={() => {
-                  hide(false);
-                }}
+              <a
+                class="text-sm text-gray-500 font-bold"
+                href="https://www.prisma-safety.com/privacy"
+                target="_blank"
+                rel="noopener"
               >
-                Continuă fară cookie-uri
-              </p>
+                Politica de Confidențialitate
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse sm:items-center">
         <button
           type="button"
-          class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-prisma-purple-500 text-base font-medium text-white hover:bg-prisma-purple-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-prisma-purple-300 sm:ml-3 sm:w-auto sm:text-sm"
+          class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 md:px-10 md:ml-5 bg-prisma-purple-500 text-base font-medium text-white hover:bg-prisma-purple-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-prisma-purple-300 sm:ml-3 sm:w-auto sm:text-sm"
           on:click={() => {
             hide(true);
           }}
         >
           Ok
         </button>
+
+        <p
+          class="mt-5 sm:mt-0 text-center text-sm text-prisma-purple-500 font-bold cursor-pointer"
+          on:click={() => {
+            hide(false);
+          }}
+        >
+          Continuă fară cookie-uri
+        </p>
       </div>
     </div>
   </div>

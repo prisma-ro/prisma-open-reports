@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "noImplicitAny": true,
-    "alwaysStrict": true,
-    "strict": true,
-  }
-}

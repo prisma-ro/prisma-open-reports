@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { MixpanelService } from "../lib/mixpanel";
+
   import IntroTile from "./introTile.svelte";
 
   export let modalShown: boolean;
@@ -14,6 +16,7 @@
         "acceptedCookies",
         `yes+statistics+${new Date().toISOString()}`
       );
+      MixpanelService.init();
     }
   };
 </script>

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "dev": "netlify dev",
     "start": "sirv public --host --no-clear",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
@@ -14,6 +14,7 @@
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-typescript": "^8.0.0",
     "@tsconfig/svelte": "^2.0.0",
+    "@types/mixpanel-browser": "^2.35.7",
     "@types/pikaday": "^1.7.5",
     "autoprefixer": "^10.4.0",
     "concurrently": "^6.3.0",
@@ -35,6 +36,7 @@
     "@netlify/functions": "^0.9.0",
     "dotenv": "^10.0.0",
     "firebase-admin": "^10.0.0",
+    "mixpanel-browser": "^2.42.0",
     "netlify-cli": "^7.0.0",
     "pikaday": "^1.8.2",
     "sirv-cli": "^1.0.0"

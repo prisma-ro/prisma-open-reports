@@ -23,6 +23,7 @@ limitations under the License.
 
   import { onMount } from "svelte";
   import { currentPage } from "./stores";
+  import { MixpanelService } from "./lib/mixpanel";
 
   let showInfoModal = false;
 
@@ -34,9 +35,11 @@ limitations under the License.
       shownIntroAt == null ||
       new Date().getTime() - new Date(shownIntroAt).getTime() > oneMonth
     ) {
-      document.querySelector("body").classList.add("overflow-hidden");
+      document.querySelector("body")?.classList.add("overflow-hidden");
       showInfoModal = true;
     }
+
+    MixpanelService.init();
   });
 </script>
 

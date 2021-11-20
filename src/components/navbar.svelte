@@ -1,7 +1,7 @@
 <script lang="ts">
   import { changePage } from "../stores";
 
-  export let showInfoModal;
+  export let showInfoModal: boolean;
 
   let showMenu = false;
   const toggleMenu = () => {

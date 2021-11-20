@@ -2,6 +2,20 @@
   import IntroTile from "./introTile.svelte";
 
   export let modalShown: boolean;
+
+  const hide = (acceptCookies: boolean) => {
+    document.querySelector("body")?.classList.remove("overflow-hidden");
+    modalShown = false;
+
+    window.localStorage.setItem("shownIntroAt", new Date().toISOString());
+
+    if (acceptCookies) {
+      window.localStorage.setItem(
+        "acceptedCookies",
+        `yes+statistics+${new Date().toISOString()}`
+      );
+    }
+  };
 </script>
 
 <div
@@ -72,8 +86,30 @@
               />
 
               <p class="text-sm text-gray-400">
-                Dacă vrei să vezi din nou acest mesaj, mergi în meniu si
-                selectează 'Cum poti ajuta'
+                Poți revedea oricând acest mesaj dacă mergi în meniu si apeși pe
+                'Ajutor'
+              </p>
+
+              <hr class="my-2" />
+
+              <p class="text-sm text-gray-500 font-bold">
+                Prin apăsarea butonului 'Ok' îți exprimi acordul ca Prisma să
+                stocheze cookie-uri folosite pentru statistici pe device-ul tău.
+                Poți consulta Politica noastră de Confidențialitate
+                <a
+                  href="https://www.prisma-safety.com/privacy"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  aici
+                </a>
+              </p>
+
+              <p
+                class="mt-2 text-sm text-prisma-purple-500 font-bold cursor-pointer"
+                on:click={() => {hide(false)}}
+              >
+                Continuă fară cookie-uri
               </p>
             </div>
           </div>
@@ -83,15 +119,7 @@
         <button
           type="button"
           class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-prisma-purple-500 text-base font-medium text-white hover:bg-prisma-purple-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-prisma-purple-300 sm:ml-3 sm:w-auto sm:text-sm"
-          on:click={() => {
-            document.querySelector("body").classList.remove("overflow-hidden");
-            modalShown = false;
-
-            window.localStorage.setItem(
-              "shownIntroAt",
-              new Date().toISOString()
-            );
-          }}
+          on:click={() => {hide(true)}}
         >
           Ok
         </button>

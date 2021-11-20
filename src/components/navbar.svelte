@@ -68,7 +68,7 @@
         }}
         class="px-4 py-2 mt-2 text-sm text-left font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
       >
-        Cum poți ajuta
+        Ajutor
       </button>
       <button
         on:click={() => {

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { COOKIE_CONSENT, SHOWN_INTRO } from "../lib/constants";
+
   import { MixpanelService } from "../lib/mixpanel";
 
   import IntroTile from "./introTile.svelte";
@@ -9,11 +11,11 @@
     document.querySelector("body")?.classList.remove("overflow-hidden");
     modalShown = false;
 
-    window.localStorage.setItem("shownIntroAt_v2", new Date().toISOString());
+    window.localStorage.setItem(SHOWN_INTRO, new Date().toISOString());
 
     if (acceptCookies) {
       window.localStorage.setItem(
-        "acceptedCookies",
+        COOKIE_CONSENT,
         `yes+statistics+${new Date().toISOString()}`
       );
       MixpanelService.init();
@@ -110,7 +112,9 @@
 
               <p
                 class="mt-2 text-sm text-prisma-purple-500 font-bold cursor-pointer"
-                on:click={() => {hide(false)}}
+                on:click={() => {
+                  hide(false);
+                }}
               >
                 Continuă fară cookie-uri
               </p>
@@ -122,7 +126,9 @@
         <button
           type="button"
           class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-prisma-purple-500 text-base font-medium text-white hover:bg-prisma-purple-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-prisma-purple-300 sm:ml-3 sm:w-auto sm:text-sm"
-          on:click={() => {hide(true)}}
+          on:click={() => {
+            hide(true);
+          }}
         >
           Ok
         </button>

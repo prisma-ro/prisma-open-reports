@@ -5,6 +5,11 @@
   onMount(() => {
     MixpanelService.event("Page View", { page: "Data Protection" });
   });
+
+  const getCookieStatus = (): string => {
+    // @ts-expect-error
+    return window.PRISMA_STAT_INIT ? "active" : "inactive";
+  };
 </script>
 
 <section class="mt-32 mx-4 md:mx-64">
@@ -69,5 +74,30 @@
     >
       Acordului de Prelucrare a Datelor Furnizate
     </a>.
+  </p>
+
+  <hr class="my-5 mx-2" />
+
+  <span
+    class="my-4 md:my-12 md:mx-24 text-3xl md:block md:text-3xl lg:text-4xl"
+  >
+    Cookies
+  </span>
+
+  <p class="my-4 md:my-12 md:mx-24 md:text-xl">
+    Status cookie-uri: {getCookieStatus()}
+    <br />
+    Poți oricând să
+    <span
+      class="text-prisma-purple-500 cursor-pointer"
+      on:click={() => {
+        MixpanelService.clearStorage();
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      }}
+    >
+      ștergi setările de pe Open Reports
+    </span>.
   </p>
 </section>

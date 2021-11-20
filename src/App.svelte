@@ -23,6 +23,7 @@ limitations under the License.
 
   import { onMount } from "svelte";
   import { currentPage } from "./stores";
+  import { COOKIE_CONSENT, SHOWN_INTRO } from "./lib/constants";
   import { MixpanelService } from "./lib/mixpanel";
 
   let showInfoModal = false;
@@ -30,7 +31,7 @@ limitations under the License.
   const oneMonth = 60 * 60 * 24 * 30 * 1000;
 
   onMount(() => {
-    const shownIntroAt = window.localStorage.getItem("shownIntroAt_v2");
+    const shownIntroAt = window.localStorage.getItem(SHOWN_INTRO);
     if (
       shownIntroAt == null ||
       new Date().getTime() - new Date(shownIntroAt).getTime() > oneMonth
@@ -39,7 +40,7 @@ limitations under the License.
       showInfoModal = true;
 
       // Revoke cookie consent
-      window.localStorage.removeItem("acceptedCookies");
+      window.localStorage.removeItem(COOKIE_CONSENT);
     }
 
     MixpanelService.init();

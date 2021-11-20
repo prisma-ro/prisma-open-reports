@@ -1,17 +1,16 @@
 import mixpanel from "mixpanel-browser";
+import { COOKIE_CONSENT, MIXPANEL_TOKEN } from "./constants";
 
 export class MixpanelService {
-  /** @private */
-  static MIXPANEL_TOKEN = "398538d67f091a997ba22e8dc1b4d013";
-
   /**
    * If the user has accepted cookies, initialize Mixpanel
    */
   static init() {
-    if (window.localStorage.getItem("acceptedCookies")) {
-      mixpanel.init(this.MIXPANEL_TOKEN, {
+    if (window.localStorage.getItem(COOKIE_CONSENT)) {
+      mixpanel.init(MIXPANEL_TOKEN, {
         debug: window.location.hostname !== "reports.prisma-safety.com",
         persistence_name: '_prisma_statistics',
+        persistence: 'localStorage',
       });
 
       // @ts-expect-error
@@ -33,6 +32,23 @@ export class MixpanelService {
     // @ts-expect-error
     if (window.PRISMA_STAT_INIT) {
       mixpanel.track(name, additional);
+    }
+  }
+
+  /**
+   * Remove all entries in localStorage
+   */
+  static clearStorage() {
+    // @ts-expect-error
+    window.PRISMA_STAT_INIT = false;
+    try {
+      mixpanel.disable();
+    } catch(_) {
+      // May fail if it was never initialized
+    }
+    
+    for (let index = 0; index < window.localStorage.length; index++) {
+      window.localStorage.removeItem(window.localStorage.key(index) ?? "");
     }
   }
 }

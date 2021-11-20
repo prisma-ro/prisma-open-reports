@@ -31,6 +31,7 @@ export interface ReportSubmission {
   };
   reportDetails: {
     honeyPot: string | null;
+    location: number[];
     sentAt: string;
   };
 }
@@ -48,6 +49,9 @@ export const isDataInBounds = (data: ReportSubmission): boolean => {
 
 export const hasRequiredData = (data: ReportSubmission): boolean => {
   return (
+    data.reportDetails &&
+    data.reportDetails.location &&
+    data.reportDetails.location.length == 2 &&
     data.incidentDetails &&
     data.incidentDetails.type !== undefined &&
     data.incidentDetails.date !== undefined &&

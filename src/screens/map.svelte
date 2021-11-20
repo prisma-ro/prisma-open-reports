@@ -19,7 +19,7 @@
 
   let reportData: ReportData;
   let hasError: boolean = false;
-  let errorText: string = '';
+  let errorText: string = "";
 
   let ignoreClick = false;
 
@@ -44,12 +44,16 @@
 
   const submit = async () => {
     if (!validateReportData(reportData)) {
-      errorText = 'Următoarele câmpuri sunt obligatorii: Tipul incidentului, zi/lună/an, ora, iar câmpul detalii poate avea maxim 2000 de caractere!';
+      errorText =
+        "Următoarele câmpuri sunt obligatorii: Tipul incidentului, zi/lună/an, ora, iar câmpul detalii poate avea maxim 2000 de caractere!";
       hasError = true;
       return;
     }
-    
-    await APIService.submitReport(reportData);
+
+    await APIService.submitReport(reportData, [
+      markerOptions.lat,
+      markerOptions.long,
+    ]);
     currentStep.set(3);
   };
 </script>
@@ -78,7 +82,7 @@
     }}
   />
 {:else if $currentStep == 3}
-  <StepThree 
+  <StepThree
     okCallback={() => {
       markerOptions.exists = false;
       ignoreClick = false;

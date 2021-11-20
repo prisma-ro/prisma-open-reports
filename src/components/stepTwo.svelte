@@ -112,7 +112,7 @@
       on:click={() => {
         data = {
           date: selectedDate,
-          time: selectedTime,
+          time: selectedTime ?? "1.00",
           honeyPot,
           type,
           details,

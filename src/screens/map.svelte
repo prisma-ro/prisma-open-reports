@@ -2,17 +2,25 @@
   import { Map, Marker } from "@beyonk/svelte-mapbox";
 
   import { currentStep } from "../stores";
+  import { APIService } from "../lib/apiService";
+  import { validateReportData } from "../lib/validators";
+
   import StepOne from "../components/stepOne.svelte";
   import StepTwo from "../components/stepTwo.svelte";
   import StepThree from "../components/stepThree.svelte";
 
-  let mapComponent: Map;
+  /** bounding of the @beyonk/svelte-mapbox Map component */
+  let mapComponent: any;
   let markerOptions = {
     exists: false,
     lat: 0,
     long: 0,
   };
+
   let reportData: ReportData;
+  let hasError: boolean = false;
+  let errorText: string = '';
+
   let ignoreClick = false;
 
   const onMapClick = (e: any) => {
@@ -34,8 +42,14 @@
     }
   };
 
-  const submit = () => {
-    console.log(reportData);
+  const submit = async () => {
+    if (!validateReportData(reportData)) {
+      errorText = 'Următoarele câmpuri sunt obligatorii: Tipul incidentului, zi/lună/an, ora, iar câmpul detalii poate avea maxim 2000 de caractere!';
+      hasError = true;
+      return;
+    }
+    
+    await APIService.submitReport(reportData);
     currentStep.set(3);
   };
 </script>
@@ -53,6 +67,8 @@
 {:else if $currentStep == 2}
   <StepTwo
     bind:data={reportData}
+    bind:error={errorText}
+    bind:showError={hasError}
     okCallback={() => {
       submit();
     }}

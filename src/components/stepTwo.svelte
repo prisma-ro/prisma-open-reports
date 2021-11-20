@@ -9,6 +9,9 @@
   let type: string;
   let details: string;
 
+  export let error: string = "";
+  export let showError: boolean = false;
+
   export let data: ReportData;
 
   export let cancelCallback: () => any;
@@ -95,6 +98,11 @@
       </div>
     </div>
   </div>
+
+  {#if showError}
+    <p class="text-prisma-red-300 font-bold text-sm text-center my-2 mx-1">{error}</p>
+  {/if}
+
   <div
     class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row sm:justify-center"
   >

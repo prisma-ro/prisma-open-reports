@@ -12,7 +12,7 @@
   import StepThree from "../components/stepThree.svelte";
 
   onMount(() => {
-    MixpanelService.event('Page View', { page: 'Map' });
+    MixpanelService.event("Page View", { page: "Map" });
   });
 
   /** bounding of the @beyonk/svelte-mapbox Map component */
@@ -41,10 +41,17 @@
       markerOptions.long = e.detail.lng;
       markerOptions.exists = true;
 
-      // Center the map a bit lower than the click point
+      // Get the current zoom
+      const currentZoom = mapComponent.getMap().transform.tileZoom ?? 10;
+
+      // If the zoom level is < 15, zoom in, otherwise keep the current zoom.
+      // Also move the view down a bit (very small values, esp. for high zoom)
       mapComponent.flyTo({
-        center: [e.detail.lng, e.detail.lat - 0.002],
-        zoom: 15,
+        center: [
+          e.detail.lng,
+          currentZoom < 15 ? e.detail.lat - 0.002 : e.detail.lat - 0.0003,
+        ],
+        zoom: currentZoom < 15 ? 15 : currentZoom,
       });
     }
   };
@@ -69,7 +76,8 @@
     if (success) {
       currentStep.set(3);
     } else {
-      errorText = "Ceva nu a mers bine... Urmărim aceste erori automat, dar ne poți contacta dacă problema persistă!";
+      errorText =
+        "Ceva nu a mers bine... Urmărim aceste erori automat, dar ne poți contacta dacă problema persistă!";
       hasError = true;
     }
   };

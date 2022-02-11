@@ -1,5 +1,5 @@
 <script lang="ts">
-  let hours: string = '1';
+  let hours: string = '14';
   let minutes: string = '00';
 
   export let time: string;

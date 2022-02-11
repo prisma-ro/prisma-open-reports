@@ -7,6 +7,8 @@ module.exports = {
       },
       spacing: {
         '4/5-screen': 'calc(100vh - 5rem)',
+        'half-screen': '50vh',
+        '2/3-screen': '75vh',
       },
       colors: {
         "prisma-red": {

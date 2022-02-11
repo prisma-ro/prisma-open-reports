@@ -1,12 +1,5 @@
-const production = !process.env.ROLLUP_WATCH;
-
 module.exports = {
-  mode: "jit",
-  purge: {
-    enabled: production,
-    content: ["./src/**/*.svelte"],
-  },
-  darkMode: false, // or 'media' or 'class'
+  content: ["./src/**/*.svelte"],
   theme: {
     extend: {
       fontFamily: {

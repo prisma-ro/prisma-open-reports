@@ -44,7 +44,7 @@
     <li>
       Adresa / Locatia ta (ne intereseaza locatia unde s-a întâmplat incidentul)
     </li>
-    <li>Identificatori (Cookie-uri / Adrese IP)</li>
+    <li>Identificatori (Adrese IP)</li>
   </ul>
 
   <span

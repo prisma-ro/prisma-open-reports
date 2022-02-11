@@ -9,7 +9,7 @@
   };
 </script>
 
-<div class="w-full absolute top-0 z-10 text-gray-700 bg-transparent pt-5 px-2">
+<div class="w-full absolute top-0 z-10 text-gray-700 bg-transparent pt-5 px-2 select-none">
   <div
     class="flex flex-col max-w-screen-xl bg-white {showMenu
       ? 'rounded-xl'

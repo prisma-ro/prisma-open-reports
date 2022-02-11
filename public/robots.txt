@@ -1,0 +1,4 @@
+# This robots.txt file controls crawling of URLs under reports.prisma-safety.com
+
+User-agent: *
+Disallow: /docs/

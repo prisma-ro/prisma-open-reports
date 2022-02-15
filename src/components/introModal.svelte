@@ -79,7 +79,7 @@
 
               <IntroTile
                 title="Pasul 1:"
-                text="Apasă oriunde pe hartă pentru a adauga un incident"
+                text="Apasă oriunde pe hartă pentru a adăuga un incident"
               />
               <IntroTile
                 title="Pasul 2:"

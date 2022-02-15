@@ -8,7 +8,8 @@ export class MixpanelService {
   static init() {
     if (window.localStorage.getItem(COOKIE_CONSENT)) {
       mixpanel.init(MIXPANEL_TOKEN, {
-        debug: window.location.hostname !== "reports.prisma-safety.com",
+        // debug: window.location.hostname !== "reports.prisma-safety.com",
+        debug: true,
         persistence_name: '_prisma_statistics',
         persistence: 'localStorage',
       });

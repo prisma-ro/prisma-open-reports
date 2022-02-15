@@ -53,6 +53,11 @@
         ],
         zoom: currentZoom < 15 ? 15 : currentZoom,
       });
+
+      MixpanelService.event('Map Clicked', {
+        lat: markerOptions.lat,
+        long: markerOptions.long,
+      });
     }
   };
 

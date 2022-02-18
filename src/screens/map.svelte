@@ -10,6 +10,7 @@
   import StepOne from "../components/stepOne.svelte";
   import StepTwo from "../components/stepTwo.svelte";
   import StepThree from "../components/stepThree.svelte";
+  import ShowReportsButton from "../components/showReportsButton.svelte";
 
   onMount(() => {
     MixpanelService.event("Page View", { page: "Map" });
@@ -27,6 +28,9 @@
   let hasError: boolean = false;
   let errorText: string = "";
   let isLoading = false;
+
+  let previousReports: ReportDataWithId[] = [];
+  let hideGetPreviousReports = false;
 
   let ignoreClick = false;
 
@@ -54,7 +58,7 @@
         zoom: currentZoom < 15 ? 15 : currentZoom,
       });
 
-      MixpanelService.event('Map Clicked', {
+      MixpanelService.event("Map Clicked", {
         lat: markerOptions.lat,
         long: markerOptions.long,
       });
@@ -85,6 +89,11 @@
         "Ceva nu a mers bine... Urmărim aceste erori automat, dar ne poți contacta dacă problema persistă!";
       hasError = true;
     }
+  };
+
+  const getReports = async () => {
+    previousReports = await APIService.getReports();
+    hideGetPreviousReports = true;
   };
 </script>
 
@@ -125,7 +134,11 @@
   />
 {/if}
 
-<section class="h-screen">
+<section class="h-screen relative">
+  <ShowReportsButton
+    bind:hide={hideGetPreviousReports}
+    onClickCallback={getReports}
+  />
   <Map
     accessToken="pk.eyJ1IjoicHJpc21hLWRhdmlkcCIsImEiOiJja3ZlMGs3bm00N3NyMm9scHYxcDcwMW5lIn0.al4e5xd-S95t1srowwoWXw"
     style="mapbox://styles/prisma-davidp/ckt6xnv4c1ut617ns7444v18e"
@@ -149,5 +162,13 @@
         color="#AA4465"
       />
     {/if}
+    {#each previousReports as prevReport}
+      <Marker
+        lng={prevReport.reportDetails.location[1]}
+        lat={prevReport.reportDetails.location[0]}
+        popup={false}
+        color="#F59C94"
+      />
+    {/each}
   </Map>
 </section>

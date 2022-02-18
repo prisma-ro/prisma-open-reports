@@ -27,7 +27,7 @@ export class APIService {
       },
     });
 
-    const raw = await fetch("/api/submit", {
+    const raw = await fetch("/api/reports", {
       body: requestBody,
       method: "POST",
       headers: {
@@ -49,5 +49,34 @@ export class APIService {
     console.log(`Added report with id ${res.data} ✨`);
     MixpanelService.event("New Report", { id: res.data });
     return true;
+  }
+
+  /**
+   * Get currently added Open Reports
+   * 
+   * @returns List with all the reports added on Open Reports
+   */
+  static async getReports(): Promise<ReportDataWithId[]> {
+    const raw = await fetch("/api/reports", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const res = await raw.json();
+
+    if (res.status !== "ok") {
+      console.warn(res.error);
+      MixpanelService.event("Error", {
+        where: "apiService.getReports",
+        apiError: res.error,
+      });
+      return [];
+    }
+
+    console.log(`Fetched ${res.data.reports.length} reports ✨`);
+    MixpanelService.event("Fetched Reports");
+
+    return res.data.reports;
   }
 }

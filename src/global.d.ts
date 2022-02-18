@@ -8,6 +8,7 @@ type PrismaPage = "map" | "about" | "dataProtection";
 type EventName =
   | "Page View"
   | "New Report"
+  | "Fetched Reports"
   | "Cancelled Report"
   | "Map Clicked"
   | "Error";
@@ -18,4 +19,13 @@ interface ReportData {
   honeyPot: string;
   type: string;
   details: string;
+}
+
+interface ReportDataWithId {
+  id: string;
+  incidentDetails: string;
+  reportDetails: {
+    location: number[];
+    sentAt: string;
+  };
 }

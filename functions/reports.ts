@@ -38,6 +38,44 @@ import {
 const handler: Handler = async (event: Event, context: Context) => {
   if (event.httpMethod === "OPTIONS") {
     return preflightResponse();
+  } else if (event.httpMethod === "GET") {
+    let data: ReportSubmission;
+    let creds: admin.credential.Credential;
+
+    /**
+     * Get firebase authentication data, either by using the FIREBASE_ADMIN_CREDS
+     * env var (in production), or by using the DEV_FIREBASE_ADMIN_CREDS env var,
+     * read from the '.env' file in the 'functions/' directory.
+     */
+    if (process.env.FIREBASE_ADMIN_CREDS) {
+      creds = createCert(process.env.FIREBASE_ADMIN_CREDS);
+    } else {
+      require("dotenv").config({
+        path: path.resolve(path.join(process.cwd(), "functions/.env")),
+      });
+      creds = createCert(process.env.DEV_FIREBASE_ADMIN_CREDS ?? "");
+    }
+
+    // Init firebase
+    if (admin.apps.length == 0) {
+      admin.initializeApp({ credential: creds });
+    }
+
+    // Valid data, continue
+    const db = admin.firestore();
+    const ref = await db.collection("open_reports").get();
+    const reports = [];
+
+    ref.docs.forEach((rep) => {
+      const data = rep.data();
+      data.incidentDetails = "REDACTED FOR CONFIDENTIALITY (see note)";
+      reports.push({ id: rep.id, ...data });
+    });
+
+    return okResponse({
+      note: "Some data is not publicly available; see https://reports.prisma-safety.com/docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf",
+      reports,
+    });
   } else if (event.httpMethod === "POST") {
     let data: ReportSubmission;
     let creds: admin.credential.Credential;

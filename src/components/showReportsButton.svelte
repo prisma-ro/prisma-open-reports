@@ -6,7 +6,7 @@
 </script>
 
 <button
-  class="{hide ? 'hidden' : 'absolute'} p-2 m-2 z-30 {isLoading ? 'w-1/2' : 'w-5/6'} bottom-16 right-1/2 transform translate-x-1/2 md:w-auto md:right-4 md:translate-x-0 rounded-full text-white {isLoading ? 'bg-gray-500' : 'bg-prisma-purple-400'} active:shadow-lg mouse shadow transition ease-in duration-100 focus:outline-none"
+  class="{hide ? 'hidden' : 'absolute'} p-2 z-30 {isLoading ? 'w-1/2' : 'w-5/6'} bottom-20 right-1/2 transform translate-x-1/2 md:w-auto md:right-4 md:translate-x-0 rounded-full text-white {isLoading ? 'bg-gray-500' : 'bg-prisma-purple-400'} active:shadow-lg mouse shadow transition ease-in duration-100 focus:outline-none"
   style="transition: width .3s ease-in-out, background-color .1s ease-in;"
   disabled={isLoading}
   on:click={() => {

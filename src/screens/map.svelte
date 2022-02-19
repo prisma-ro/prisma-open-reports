@@ -11,9 +11,6 @@
   import StepTwo from "../components/stepTwo.svelte";
   import StepThree from "../components/stepThree.svelte";
   import ShowReportsButton from "../components/showReportsButton.svelte";
-  import About from "./about.svelte";
-  import App from "../App.svelte";
-  import DataProtection from "./dataProtection.svelte";
 
   onMount(() => {
     MixpanelService.event("Page View", { page: "Map" });
@@ -171,7 +168,9 @@
         lat={prevReport.reportDetails.location[0]}
         popup={false}
         color="#AA4465"
-      />
+      >
+        <div style="content: url('/map-marker.png'); height: 4em;" />
+      </Marker>
     {/each}
   </Map>
 </section>

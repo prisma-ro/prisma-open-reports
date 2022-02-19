@@ -79,10 +79,16 @@ export const errResponse = (error: any, code: number = 500): Response => {
   };
 };
 
-export const okResponse = (data: any, code: number = 200): Response => {
+export const okResponse = (
+  data: any,
+  code: number = 200,
+  additionalHeaders?: any
+): Response => {
   return {
     statusCode: code,
-    headers: HEADERS,
+    headers: !additionalHeaders
+      ? HEADERS
+      : { ...HEADERS, ...additionalHeaders },
     body: JSON.stringify({
       status: "ok",
       error: null,

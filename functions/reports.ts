@@ -39,7 +39,6 @@ const handler: Handler = async (event: Event, context: Context) => {
   if (event.httpMethod === "OPTIONS") {
     return preflightResponse();
   } else if (event.httpMethod === "GET") {
-    let data: ReportSubmission;
     let creds: admin.credential.Credential;
 
     /**
@@ -68,14 +67,23 @@ const handler: Handler = async (event: Event, context: Context) => {
 
     ref.docs.forEach((rep) => {
       const data = rep.data();
-      data.incidentDetails = "REDACTED FOR CONFIDENTIALITY (see note)";
+      // data.incidentDetails = "REDACTED FOR CONFIDENTIALITY (see note)";
       reports.push({ id: rep.id, ...data });
     });
 
-    return okResponse({
-      note: "Some data is not publicly available; see https://reports.prisma-safety.com/docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf",
-      reports,
-    });
+    return okResponse(
+      // data:
+      {
+        note: "Some data is not publicly available; see https://reports.prisma-safety.com/docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf",
+        reports,
+      },
+      // code:
+      200,
+      // additionalHeaders:
+      {
+        "Cache-Control": "max-age=7200",
+      }
+    );
   } else if (event.httpMethod === "POST") {
     let data: ReportSubmission;
     let creds: admin.credential.Credential;

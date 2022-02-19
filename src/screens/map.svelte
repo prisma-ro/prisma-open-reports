@@ -159,7 +159,7 @@
         lng={markerOptions.long}
         lat={markerOptions.lat}
         popup={false}
-        color="#AA4465"
+        color="#462255"
       />
     {/if}
     {#each previousReports as prevReport}
@@ -167,8 +167,10 @@
         lng={prevReport.reportDetails.location[1]}
         lat={prevReport.reportDetails.location[0]}
         popup={false}
-        color="#F59C94"
-      />
+        color="#AA4465"
+      >
+        <div style="content: url('/map-marker.png'); height: 4em;" />
+      </Marker>
     {/each}
   </Map>
 </section>

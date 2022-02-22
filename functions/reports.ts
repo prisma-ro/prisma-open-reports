@@ -67,7 +67,7 @@ const handler: Handler = async (event: Event, context: Context) => {
 
     ref.docs.forEach((rep) => {
       const data = rep.data();
-      // data.incidentDetails = "REDACTED FOR CONFIDENTIALITY (see note)";
+      data.incidentDetails = "REDACTED FOR CONFIDENTIALITY (see note)";
       reports.push({ id: rep.id, ...data });
     });
 

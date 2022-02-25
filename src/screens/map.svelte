@@ -6,6 +6,7 @@
   import { APIService } from "../lib/apiService";
   import { validateReportData } from "../lib/validators";
   import { MixpanelService } from "../lib/mixpanel";
+  import { HistoryManager } from "../lib/historyManager";
 
   import StepOne from "../components/stepOne.svelte";
   import StepTwo from "../components/stepTwo.svelte";
@@ -14,6 +15,9 @@
 
   onMount(() => {
     MixpanelService.event("Page View", { page: "Map" });
+    
+    // Check for an initial page in the url
+    HistoryManager.processInitialUrl();
   });
 
   /** bounding of the @beyonk/svelte-mapbox Map component */

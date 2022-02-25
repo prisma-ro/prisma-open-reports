@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { HistoryManager } from "../lib/historyManager";
+
   import { changePage } from "../stores";
 
   export let showInfoModal: boolean;
@@ -9,7 +11,9 @@
   };
 </script>
 
-<div class="w-full absolute top-0 z-10 text-gray-700 bg-transparent pt-5 px-2 select-none">
+<div
+  class="w-full absolute top-0 z-10 text-gray-700 bg-transparent pt-5 px-2 select-none"
+>
   <div
     class="flex flex-col max-w-screen-xl bg-white {showMenu
       ? 'rounded-xl'
@@ -19,6 +23,7 @@
       <button
         on:click={() => {
           changePage("map");
+          HistoryManager.goTo("map");
           showMenu = false;
         }}
         class="text-lg text-gray-900 rounded-lg focus:outline-none focus:shadow-outline"
@@ -55,6 +60,7 @@
       <button
         on:click={() => {
           changePage("about");
+          HistoryManager.goTo("about");
           showMenu = false;
         }}
         class="px-4 py-2 mt-2 text-sm text-left font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
@@ -73,6 +79,7 @@
       <button
         on:click={() => {
           changePage("dataProtection");
+          HistoryManager.goTo("dataProtection");
           showMenu = false;
         }}
         class="px-4 py-2 mt-2 text-sm text-left font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"

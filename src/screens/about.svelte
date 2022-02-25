@@ -1,9 +1,22 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { HistoryManager } from "../lib/historyManager";
   import { MixpanelService } from "../lib/mixpanel";
 
   onMount(() => {
     MixpanelService.event("Page View", { page: "Data Protection" });
+
+    const historyManager = new HistoryManager();
+
+    if (!historyManager.hasValidState) {
+      console.log("Invalid or missing returnTo query!");
+    }
+
+    window.onpopstate = () => {
+      historyManager.onPopStateCallback();
+    };
+
+    historyManager.clearLink();
   });
 </script>
 

@@ -61,7 +61,7 @@ export const hasRequiredData = (data: ReportSubmission): boolean => {
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "OPTIONS, GET, POST, DELETE",
+  "Access-Control-Allow-Methods": "OPTIONS, GET, POST",
   "Access-Control-Allow-Headers":
     "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
 };

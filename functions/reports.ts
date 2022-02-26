@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright 2021 Prisma
+ * @copyright Copyright 2021-2022 Prisma
  *
- * @description Handle report submissions and add them to a Firestore database
+ * @description Handle adding report submissions and fetching added reports.
  *
  * @license Apache 2.0
  *
@@ -16,11 +16,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * ---
+ * Repository: https://github.com/prisma-ro/prisma-open-reports
+ * Vulnerabilities: https://www.prisma-safety.com/.well-known/security.txt
  */
 
-import { Handler } from "@netlify/functions";
-import { Context } from "@netlify/functions/dist/function/context";
-import { Event } from "@netlify/functions/dist/function/event";
+import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 
 import * as admin from "firebase-admin";
 import path from "path";
@@ -35,7 +37,10 @@ import {
   ReportSubmission,
 } from "./_lib";
 
-const handler: Handler = async (event: Event, context: Context) => {
+const handler: Handler = async (event: HandlerEvent, _: HandlerContext) => {
+  const REDACTED_MESSAGE = "REDACTED FOR CONFIDENTIALITY";
+  const RESPONSE_NOTE = `(C) Prisma Safety ${new Date().getFullYear()}. Some data is not publicly available (marked with "REDACTED FOR CONFIDENTIALITY").`;
+
   if (event.httpMethod === "OPTIONS") {
     return preflightResponse();
   } else if (event.httpMethod === "GET") {
@@ -67,14 +72,15 @@ const handler: Handler = async (event: Event, context: Context) => {
 
     ref.docs.forEach((rep) => {
       const data = rep.data();
-      data.incidentDetails.details = "REDACTED FOR CONFIDENTIALITY (see note)";
+      data.incidentDetails.details = REDACTED_MESSAGE;
+      data.incidentDetails.notifiedAuthorities = REDACTED_MESSAGE;
       reports.push({ id: rep.id, ...data });
     });
 
     return okResponse(
       // data:
       {
-        note: "Some data is not publicly available; see https://reports.prisma-safety.com/docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf",
+        note: RESPONSE_NOTE,
         reports,
       },
       // code:

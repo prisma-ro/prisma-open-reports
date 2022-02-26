@@ -5,6 +5,8 @@ const isValidValue = (val: string): boolean => {
 /**
  * Validate the new report's data
  * 
+ * @deprecated Switched to 2 separated validators
+ * 
  * @param reportData data collected at step 2 in the report process
  * @returns valid (true) / invalid (false)
  */
@@ -26,3 +28,26 @@ export const validateReportData = (reportData: ReportData): boolean => {
 
   return true;
 };
+
+export const validateStep2A = (data: Step2AData): boolean => {
+  if (!isValidValue(data.type) || !isValidValue(data.time)) {
+    return false;
+  }
+
+  if (
+    data.date === undefined ||
+    data.date.toString() === "Invalid Date"
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
+export const validateStep2B = (data: Step2BData): boolean => {
+  if ((data.details ?? "").length > 2000) {
+    return false;
+  }
+
+  return true;
+}

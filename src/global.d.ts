@@ -16,14 +16,33 @@ type EventName =
 interface ReportData {
   date: Date;
   time: string;
-  honeyPot: string;
+  honeyPots: string[];
   type: string;
   details: string;
+  notifiedAuthorities: boolean;
 }
 
+interface Step2AData {
+  honeyPot: string;
+  date: Date;
+  time: string;
+  type: string;
+}
+
+interface Step2BData {
+  honeyPot: string;
+  details: string;
+  notifiedAuthorities: boolean;
+}
 interface ReportDataWithId {
   id: string;
-  incidentDetails: string;
+  incidentDetails: {
+    type: string;
+    details: string; // May be redacted to protect user privacy
+    time: string;
+    date: string;
+    notifiedAuthorities: string; // May be redacted to protect user privacy
+  };
   reportDetails: {
     location: number[];
     sentAt: string;

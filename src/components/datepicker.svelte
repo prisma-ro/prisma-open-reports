@@ -26,7 +26,7 @@
 
 <div class="flex flex-row">
   <select
-    class="bg-gray-200 appearance-none text-center border-2 border-gray-200 rounded w-1/3 mx-1 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+    class="bg-gray-200 appearance-none text-center border-2 border-gray-200 rounded w-1/3 mx-1 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-prisma-purple-100"
     name="dp-day"
     id="dp-day"
     bind:value={selectedDay}
@@ -43,7 +43,7 @@
   </select>
 
   <select
-    class="bg-gray-200 appearance-none text-center border-2 border-gray-200 rounded w-1/3 mx-1 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+    class="bg-gray-200 appearance-none text-center border-2 border-gray-200 rounded w-1/3 mx-1 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-prisma-purple-100"
     name="dp-mth"
     id="dp-mth"
     bind:value={selectedMonth}
@@ -60,7 +60,7 @@
   </select>
 
   <select
-    class="bg-gray-200 appearance-none text-center border-2 border-gray-200 rounded w-1/3 mx-1 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+    class="bg-gray-200 appearance-none text-center border-2 border-gray-200 rounded w-1/3 mx-1 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-prisma-purple-100"
     name="dp-year"
     id="dp-year"
     bind:value={selectedYear}
@@ -69,7 +69,7 @@
     <option class="text-gray-700 block text-sm" selected disabled hidden>
       An
     </option>
-    {#each [...[...Array(50).keys()].map((e) => new Date().getFullYear() - e)] as y}
+    {#each [...[...Array(5).keys()].map((e) => new Date().getFullYear() - e)] as y}
       <option class="text-gray-700 block text-sm">
         {y}
       </option>

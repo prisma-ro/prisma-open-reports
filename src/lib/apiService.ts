@@ -5,23 +5,44 @@ import { MixpanelService } from "./mixpanel";
  */
 export class APIService {
   /**
+   *
+   * @param report data collected in the report process
+   *
+   * @returns false if the honeypot check failed | true - passed
+   */
+  private static _checkHoneyPots(report: ReportData): boolean {
+    report.honeyPots.forEach((pot) => {
+      if (pot) {
+        return false;
+      }
+    });
+    return true;
+  }
+
+  /**
    * Add a new report to the db
    *
-   * @param report data collected at step 2 in the report process
+   * @param report data collected in the report process
    * @param location [report latitude, report longitude]
    *
-   * @returns ok - success | false - something failed (logged to console)
+   * @returns true - success | false - something failed (logged to console)
    */
-  static async submitReport(report: ReportData, location: number[]) {
+  static async submitReport(
+    report: ReportData,
+    location: number[]
+  ): Promise<boolean> {
     const requestBody = JSON.stringify({
       incidentDetails: {
         type: report.type,
         date: report.date.toISOString(),
         time: report.time,
         details: report.details ?? null,
+        notifiedAuthorities: report.notifiedAuthorities,
       },
       reportDetails: {
-        honeyPot: report.honeyPot ?? null,
+        honeyPot: this._checkHoneyPots(report)
+          ? null
+          : `CONTENT:${report.honeyPots.toString()}`,
         location: location,
         sentAt: new Date().toISOString(),
       },
@@ -53,7 +74,7 @@ export class APIService {
 
   /**
    * Get currently added Open Reports
-   * 
+   *
    * @returns List with all the reports added on Open Reports
    */
   static async getReports(): Promise<ReportDataWithId[]> {

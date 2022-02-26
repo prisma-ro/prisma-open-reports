@@ -4,18 +4,23 @@
   import { onMount } from "svelte";
   import { currentStep } from "../stores";
   import { APIService } from "../lib/apiService";
-  import { validateReportData } from "../lib/validators";
+  import {
+    validateReportData,
+    validateStep2A,
+    validateStep2B,
+  } from "../lib/validators";
   import { MixpanelService } from "../lib/mixpanel";
   import { HistoryManager } from "../lib/historyManager";
 
   import StepOne from "../components/stepOne.svelte";
-  import StepTwo from "../components/stepTwo.svelte";
+  import StepTwoA from "../components/stepTwoA.svelte";
+  import StepTwoB from "../components/stepTwoB.svelte";
   import StepThree from "../components/stepThree.svelte";
   import ShowReportsButton from "../components/showReportsButton.svelte";
 
   onMount(() => {
     MixpanelService.event("Page View", { page: "Map" });
-    
+
     // Check for an initial page in the url
     HistoryManager.processInitialUrl();
   });
@@ -29,6 +34,9 @@
   };
 
   let reportData: ReportData;
+  let step2AData: Step2AData;
+  let step2BData: Step2BData;
+
   let hasError: boolean = false;
   let errorText: string = "";
   let isLoading = false;
@@ -70,13 +78,6 @@
   };
 
   const submit = async () => {
-    if (!validateReportData(reportData)) {
-      errorText =
-        "Următoarele câmpuri sunt obligatorii: Tipul incidentului, zi/lună/an, ora, iar câmpul detalii poate avea maxim 2000 de caractere!";
-      hasError = true;
-      return;
-    }
-
     isLoading = true;
 
     const success = await APIService.submitReport(reportData, [
@@ -87,7 +88,7 @@
     isLoading = false;
 
     if (success) {
-      currentStep.set(3);
+      currentStep.set(4);
     } else {
       errorText =
         "Ceva nu a mers bine... Urmărim aceste erori automat, dar ne poți contacta dacă problema persistă!";
@@ -112,14 +113,20 @@
     }}
   />
 {:else if $currentStep == 2}
-  <StepTwo
-    bind:data={reportData}
+  <StepTwoA
+    bind:data={step2AData}
     bind:error={errorText}
     bind:showError={hasError}
-    bind:isLoading
     okCallback={() => {
-      if (isLoading) return;
-      submit();
+      if (!validateStep2A(step2AData)) {
+        errorText =
+          "Câmpuri obligatorii: Tipul incidentului, zi/lună/an, ora.<br /><br />Știm că poate fi greu să îți amintești o dată specifică, dar încearcă sa aproximezi (dacă e un incident repetat, menționează la pasul urmator!).";
+        hasError = true;
+      } else {
+        errorText = "";
+        hasError = false;
+        currentStep.set(3);
+      }
     }}
     cancelCallback={() => {
       if (isLoading) return;
@@ -129,6 +136,40 @@
     }}
   />
 {:else if $currentStep == 3}
+  <StepTwoB
+    bind:data={step2BData}
+    bind:error={errorText}
+    bind:showError={hasError}
+    bind:isLoading
+    okCallback={() => {
+      if (isLoading) return;
+
+      if (!validateStep2B(step2BData)) {
+        errorText = "Câmpul detalii este limitat la 1000 de caractere.";
+        hasError = true;
+      } else {
+        errorText = "";
+        hasError = false;
+
+        reportData = {
+          honeyPots: [step2AData.honeyPot, step2BData.honeyPot],
+          date: step2AData.date,
+          time: step2AData.time,
+          type: step2AData.type,
+          details: step2BData.details,
+          notifiedAuthorities: step2BData.notifiedAuthorities,
+        };
+
+        submit();
+      }
+    }}
+    cancelCallback={() => {
+      if (isLoading) return;
+      currentStep.set(2);
+      ignoreClick = false;
+    }}
+  />
+{:else if $currentStep == 4}
   <StepThree
     okCallback={() => {
       markerOptions.exists = false;

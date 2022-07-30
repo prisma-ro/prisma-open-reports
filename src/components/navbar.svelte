@@ -9,7 +9,7 @@
 </script>
 
 <nav
-  class="navbar absolute top-0 z-20 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 border-b border-b-gray-200"
+  class="navbar absolute top-0 z-20 glassmorphism border-b border-b-gray-200"
 >
   <div class="navbar-start">
     <div class="dropdown">
@@ -31,24 +31,41 @@
       </button>
       <ul
         tabindex="0"
-        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+        class="menu menu-compact dropdown-content mt-6 p-2 shadow bg-base-100 rounded-box w-52"
       >
-        <li><a href="#"> {$intl.navbar.about} </a></li>
-        <li><a href="#"> {$intl.navbar.help} </a></li>
-        <li><a href="#"> {$intl.navbar.dataProtection} </a></li>
-        <li><a href="#"> {$intl.navbar.login} </a></li>
-        <li><a href="#"> {$intl.navbar.more} </a></li>
+        <li><button class="btn-ghost"> {$intl.navbar.about} </button></li>
+        <li><button class="btn-ghost"> {$intl.navbar.help} </button></li>
+        <li>
+          <button class="btn-ghost"> {$intl.navbar.dataProtection} </button>
+        </li>
+        <hr class="my-2" />
+        <li>
+          <button class="btn btn-primary normal-case text-white">
+            {$intl.navbar.login}
+          </button>
+        </li>
+        <li>
+          <a class="btn-ghost btn-sm my-1" href="#"> {$intl.navbar.more} </a>
+        </li>
       </ul>
     </div>
   </div>
 
-  <div class="navbar-center">
-    <a href="#" class="btn btn-ghost normal-case text-xl"> Prisma Reports </a>
+  <div class="navbar-center flex flex-col items-center">
+    <a href="#" class="font-semibold py-1 text-xl"> Prisma Reports </a>
+    <div
+      class="tooltip tooltip-bottom tooltip-accent"
+      data-tip={$intl.navbar.mode.tooltipView}
+    >
+      <div class="badge badge-ghost badge-outline">
+        {$intl.navbar.mode.view}
+      </div>
+    </div>
   </div>
 
   <div class="navbar-end flex">
     <div class="dropdown dropdown-end">
-      <button class="btn btn-ghost rounded-btn">
+      <button class="btn btn-ghost btn-circle">
         <svg
           class="h-5 w-5"
           xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +80,7 @@
       </button>
       <ul
         tabindex="0"
-        class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
+        class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-6"
       >
         <li>
           <button

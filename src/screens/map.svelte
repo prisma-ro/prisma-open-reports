@@ -44,7 +44,8 @@
   let previousReports: ReportDataWithId[] = [];
   let hideGetPreviousReports = false;
 
-  let ignoreClick = false;
+  // !!!! TEMPORARY !!!!
+  let ignoreClick = true;
 
   const onMapClick = (e: any) => {
     if (ignoreClick) return;
@@ -184,6 +185,7 @@
     bind:hide={hideGetPreviousReports}
     onClickCallback={getReports}
   />
+  <!-- Sattelite: style="mapbox://styles/prisma-davidp/cl67wbs3x000b14un39xogqeg" -->
   <Map
     accessToken="pk.eyJ1IjoicHJpc21hLWRhdmlkcCIsImEiOiJja3ZlMGs3bm00N3NyMm9scHYxcDcwMW5lIn0.al4e5xd-S95t1srowwoWXw"
     style="mapbox://styles/prisma-davidp/ckt6xnv4c1ut617ns7444v18e"
@@ -191,6 +193,7 @@
     zoom="5.5"
     bind:this={mapComponent}
     on:click={onMapClick}
+    on
     options={{
       minZoom: 5,
       maxBounds: [

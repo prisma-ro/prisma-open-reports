@@ -82,4 +82,10 @@ limitations under the License.
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
+
+  @layer components {
+    .glassmorphism {
+      @apply bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30
+    }
+  }
 </style>

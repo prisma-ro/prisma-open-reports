@@ -194,8 +194,9 @@
     options={{
       minZoom: 5,
       maxBounds: [
-        [19, 43],
-        [30, 49],
+        // Bounds to cover more or less the entire continent
+        [-27, 34], // North Atlantic Ocean / Around Morocco
+        [42, 71], // Barents Sea / North of Russia
       ],
     }}
   >

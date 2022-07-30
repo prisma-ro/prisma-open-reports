@@ -6,9 +6,9 @@ module.exports = {
         sans: ["DM Sans", "sans-serif"],
       },
       spacing: {
-        '4/5-screen': 'calc(100vh - 5rem)',
-        'half-screen': '50vh',
-        '2/3-screen': '75vh',
+        "4/5-screen": "calc(100vh - 5rem)",
+        "half-screen": "50vh",
+        "2/3-screen": "75vh",
       },
       colors: {
         "prisma-red": {
@@ -65,5 +65,26 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    styled: true,
+    themes: [
+      {
+        mytheme: {
+          primary: "#462255", // Prisma Purple 500
+          secondary: "#ffa69e", // Prisma Pink 500
+          accent: "#aa4465", // Prisma Red 500
+          neutral: "#1D0F23", // Prisma Purple 500 (w/ luminance at 10%)
+          "base-100": "#FAF7F5",
+        },
+      },
+      "cupcake",
+    ],
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
+    prefix: "",
+    darkTheme: "dark",
+  },
 };

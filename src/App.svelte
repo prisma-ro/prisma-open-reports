@@ -1,5 +1,5 @@
 <!-- 
-Copyright 2021 Prisma
+Copyright 2021-2022 Prisma Safety
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,6 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <script lang="ts">
+  import Navbar from "./components/navbar.svelte";
+  import Map from "./screens/map.svelte";
+  import { isLoading } from "./stores";
+</script>
+
+<!-- <script lang="ts">
   import Navbar from "./components/navbar.svelte";
   import About from "./screens/about.svelte";
   import DataProtection from "./screens/dataProtection.svelte";
@@ -60,6 +66,15 @@ limitations under the License.
     <DataProtection />
   {:else}
     <Map />
+  {/if}
+</main> -->
+
+<main class="antialiased">
+  <Navbar />
+  <Map />
+
+  {#if $isLoading}
+    <progress class="progress absolute top-0 z-10 w-full rounded-none" />
   {/if}
 </main>
 

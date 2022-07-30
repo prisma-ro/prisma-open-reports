@@ -43,7 +43,7 @@ Please respect our Code of Conduct. It can be found [here](CODE_OF_CONDUCT.md).
 ## LICENSE
 
 ```
-Copyright 2021 Prisma
+Copyright 2021-2022 Prisma Safety
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

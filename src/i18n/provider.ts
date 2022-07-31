@@ -55,10 +55,14 @@ export class TranslationProvider {
    * @see SUPPORTED_LANGS - The list of languages / locales supported
    */
   static initialize() {
+    console.debug("[TranslationProvider] init");
+
     const saved = localStorage.getItem(LANGUAGE_USED);
     if (saved && SUPPORTED_LANGS.includes(saved)) {
       currentLanguage.set(saved as Language);
       intl.set(this.getTransaltionForLanguage(saved as Language));
+      console.log(`[TranslationProvider] Using saved language ${saved}`);
+      return;
     }
 
     // Nothing saved, get language from browser
@@ -68,6 +72,7 @@ export class TranslationProvider {
       console.log(`[TranslationProvider] Saved ${browser} as initial language`);
       currentLanguage.set(browser as Language);
       intl.set(this.getTransaltionForLanguage(browser as Language));
+      return;
     }
 
     // Default to english if no lanugage was found

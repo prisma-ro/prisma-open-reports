@@ -181,10 +181,13 @@
 {/if}
 
 <section class="h-screen relative">
-  <ShowReportsButton
+  <!-- <ShowReportsButton
     bind:hide={hideGetPreviousReports}
     onClickCallback={getReports}
-  />
+  /> -->
+
+
+
   <!-- Sattelite: style="mapbox://styles/prisma-davidp/cl67wbs3x000b14un39xogqeg" -->
   <Map
     accessToken="pk.eyJ1IjoicHJpc21hLWRhdmlkcCIsImEiOiJja3ZlMGs3bm00N3NyMm9scHYxcDcwMW5lIn0.al4e5xd-S95t1srowwoWXw"

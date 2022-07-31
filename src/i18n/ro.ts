@@ -13,4 +13,16 @@ export const ro = {
       tooltipAdd: "În aces mod puteți adăuga noi rapoarte, apăsând pe hartă",
     }
   },
+
+  bottomControls: {
+    addReport: "Adaugă un raport",
+    satellite: "Satelit",
+    region: "Regiune",
+    change: "Schimbă",
+    regionChangeModal: {
+      title: "Schimbă regiunea hărții",
+      bodyHTML: /*html*/`Test <br /> test2`,
+      save: "Salvează"
+    }
+  }
 }

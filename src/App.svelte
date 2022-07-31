@@ -16,7 +16,14 @@ limitations under the License.
 <script lang="ts">
   import Navbar from "./components/navbar.svelte";
   import Map from "./screens/map.svelte";
-  import { isLoading } from "./stores";
+  import About from "./screens/about.svelte";
+  import DataProtection from "./screens/dataProtection.svelte";
+
+  import { isLoading, currentPage } from "./stores";
+  import { TranslationProvider } from "./i18n/provider";
+import BottomControls from "./components/bottomControls.svelte";
+
+  TranslationProvider.initialize();
 </script>
 
 <!-- <script lang="ts">
@@ -71,7 +78,15 @@ limitations under the License.
 
 <main class="antialiased">
   <Navbar />
-  <Map />
+
+  {#if $currentPage == "about"}
+    <About />
+  {:else if $currentPage == "dataProtection"}
+    <DataProtection />
+  {:else}
+    <Map />
+    <BottomControls />
+  {/if}
 
   {#if $isLoading}
     <progress class="progress absolute top-0 z-10 w-full rounded-none" />
@@ -85,7 +100,7 @@ limitations under the License.
 
   @layer components {
     .glassmorphism {
-      @apply bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30
+      @apply bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30;
     }
   }
 </style>

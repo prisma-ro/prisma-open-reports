@@ -3,9 +3,11 @@ import type { AvailalbeTranslation, Language } from "../i18n/provider";
 
 export const MIXPANEL_TOKEN = "398538d67f091a997ba22e8dc1b4d013";
 
+export const MAPBOX_TOKEN =
+  "pk.eyJ1IjoicHJpc21hLWRhdmlkcCIsImEiOiJja3ZlMGs3bm00N3NyMm9scHYxcDcwMW5lIn0.al4e5xd-S95t1srowwoWXw";
 export const MAPBOX_STYLES = {
   NORMAL: "mapbox://styles/prisma-davidp/ckt6xnv4c1ut617ns7444v18e",
-  SATELLITE: "mapbox://styles/mapbox/satellite-streets-v11"
+  SATELLITE: "mapbox://styles/mapbox/satellite-streets-v11",
 };
 
 export const SHOWN_INTRO = "reports_v2__shownIntroAt";

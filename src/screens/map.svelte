@@ -2,7 +2,7 @@
   import { Map, Marker } from "@beyonk/svelte-mapbox";
 
   import { onMount } from "svelte";
-  import { currentStep } from "../stores";
+  import { currentSettings, currentStep } from "../stores";
   import { APIService } from "../lib/apiService";
   import {
     validateReportData,
@@ -17,16 +17,33 @@
   import StepTwoB from "../components/stepTwoB.svelte";
   import StepThree from "../components/stepThree.svelte";
   import ShowReportsButton from "../components/showReportsButton.svelte";
+  import { MAPBOX_STYLES } from "../lib/constants";
+
+  /** bounding of the @beyonk/svelte-mapbox Map component */
+  let mapComponent: any;
 
   onMount(() => {
     MixpanelService.event("Page View", { page: "Map" });
 
     // Check for an initial page in the url
     HistoryManager.processInitialUrl();
+
+    currentSettings.subscribe((settings) => {
+      const mapboxMapRef = mapComponent?.getMap();
+
+      if (!mapboxMapRef) {
+        console.error("[Map] Failed to get Mapbox Reference");
+        return;
+      }
+
+      if (settings.useSatellite) {
+        mapboxMapRef.setStyle(MAPBOX_STYLES.SATELLITE);
+      } else {
+        mapboxMapRef.setStyle(MAPBOX_STYLES.NORMAL);
+      }
+    });
   });
 
-  /** bounding of the @beyonk/svelte-mapbox Map component */
-  let mapComponent: any;
   let markerOptions = {
     exists: false,
     lat: 0,
@@ -186,23 +203,22 @@
     onClickCallback={getReports}
   /> -->
 
-
-
-  <!-- Sattelite: style="mapbox://styles/prisma-davidp/cl67wbs3x000b14un39xogqeg" -->
   <Map
     accessToken="pk.eyJ1IjoicHJpc21hLWRhdmlkcCIsImEiOiJja3ZlMGs3bm00N3NyMm9scHYxcDcwMW5lIn0.al4e5xd-S95t1srowwoWXw"
-    style="mapbox://styles/prisma-davidp/ckt6xnv4c1ut617ns7444v18e"
+    style={$currentSettings.useSatellite
+      ? MAPBOX_STYLES.SATELLITE
+      : MAPBOX_STYLES.NORMAL}
     center={[24.849442, 46.069881]}
     zoom="5.5"
     bind:this={mapComponent}
     on:click={onMapClick}
-    on
     options={{
-      minZoom: 5,
+      minZoom: $currentSettings.mapLimits.minZoom,
+      maxZoom: $currentSettings.mapLimits.maxZoom,
       maxBounds: [
         // Bounds to cover more or less the entire continent
-        [-27, 34], // North Atlantic Ocean / Around Morocco
-        [42, 71], // Barents Sea / North of Russia
+        $currentSettings.mapLimits.boundsBtmLeft, 
+        $currentSettings.mapLimits.boundsTopRight,
       ],
     }}
   >

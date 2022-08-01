@@ -1,7 +1,15 @@
 <script lang="ts">
+  import { SettingsService } from "../lib/settingsService";
   import { intl } from "../stores";
 
-  export let useSatellite: boolean;
+  const s = SettingsService.instance;
+
+  let useSatellite: boolean = s.settings.useSatellite;
+
+  const onChangeUseSatellite = () => {
+    s.settings.useSatellite = useSatellite;
+    s.applyUpdate();
+  };
 </script>
 
 <!-- Update Map Region Modal -->
@@ -56,8 +64,8 @@
               type="checkbox"
               class="toggle toggle-primary"
               bind:checked={useSatellite}
+              on:change={onChangeUseSatellite}
             />
-            <!-- TODO: Update settings using on:change ^^^ -->
           </label>
         </div>
       </li>

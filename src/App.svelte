@@ -13,18 +13,50 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
+
 <script lang="ts">
   import Navbar from "./components/navbar.svelte";
   import Map from "./screens/map.svelte";
   import About from "./screens/about.svelte";
   import DataProtection from "./screens/dataProtection.svelte";
+  import BottomControls from "./components/bottomControls.svelte";
 
   import { isLoading, currentPage } from "./stores";
   import { TranslationProvider } from "./i18n/provider";
-import BottomControls from "./components/bottomControls.svelte";
+  import { SettingsService } from "./lib/settingsService";
 
   TranslationProvider.initialize();
+  SettingsService.initialize();
 </script>
+
+<main class="antialiased">
+  <Navbar />
+
+  {#if $currentPage == "about"}
+    <About />
+  {:else if $currentPage == "dataProtection"}
+    <DataProtection />
+  {:else}
+    <Map />
+    <BottomControls />
+  {/if}
+
+  {#if $isLoading}
+    <progress class="progress absolute top-0 z-10 w-full rounded-none" />
+  {/if}
+</main>
+
+<style global lang="postcss">
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer components {
+    .glassmorphism {
+      @apply bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30;
+    }
+  }
+</style>
 
 <!-- <script lang="ts">
   import Navbar from "./components/navbar.svelte";
@@ -75,32 +107,3 @@ import BottomControls from "./components/bottomControls.svelte";
     <Map />
   {/if}
 </main> -->
-
-<main class="antialiased">
-  <Navbar />
-
-  {#if $currentPage == "about"}
-    <About />
-  {:else if $currentPage == "dataProtection"}
-    <DataProtection />
-  {:else}
-    <Map />
-    <BottomControls />
-  {/if}
-
-  {#if $isLoading}
-    <progress class="progress absolute top-0 z-10 w-full rounded-none" />
-  {/if}
-</main>
-
-<style global lang="postcss">
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-
-  @layer components {
-    .glassmorphism {
-      @apply bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30;
-    }
-  }
-</style>

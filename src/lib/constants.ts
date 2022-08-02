@@ -19,3 +19,249 @@ export const DEFAULT_LANGUAGE: Language = "en-GB";
 export const DEFAULT_TRANSLATION: AvailalbeTranslation = en;
 
 export const SAVED_SETTINGS = "reports_v2__settings";
+
+/**
+ * Names and emojis for the available countries.
+ */
+export const COUNTRY_DATA = {
+  ad: {
+    englishName: "Andorra",
+    emojiFlag: "🇦🇩",
+    isFavorite: false,
+  },
+  al: {
+    englishName: "Albania",
+    emojiFlag: "🇦🇱",
+    isFavorite: false,
+  },
+  at: {
+    englishName: "Austria",
+    emojiFlag: "🇦🇹",
+    isFavorite: false,
+  },
+  ba: {
+    englishName: "Bosnia & Herzegovina",
+    emojiFlag: "🇧🇦",
+    isFavorite: false,
+  },
+  be: {
+    englishName: "Belgium",
+    emojiFlag: "🇧🇪",
+    isFavorite: false,
+  },
+  bg: {
+    englishName: "Bulgaria",
+    emojiFlag: "🇧🇬",
+    isFavorite: true,
+  },
+  by: {
+    englishName: "Belarus",
+    emojiFlag: "🇧🇾",
+    isFavorite: false,
+  },
+  ch: {
+    englishName: "Switzerland",
+    emojiFlag: "🇨🇭",
+    isFavorite: false,
+  },
+  cz: {
+    englishName: "Czechia",
+    emojiFlag: "🇨🇿",
+    isFavorite: false,
+  },
+  de: {
+    englishName: "Germany",
+    emojiFlag: "🇩🇪",
+    isFavorite: false,
+  },
+  dk: {
+    englishName: "Denmark",
+    emojiFlag: "🇩🇰",
+    isFavorite: false,
+  },
+  dz: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  ee: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  es: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  fi: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  fr: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  gb: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  ge: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  gi: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  gr: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  hr: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  hu: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: true,
+  },
+  ie: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  im: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  is: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  it: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  li: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  lt: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  lv: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  ma: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  mc: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  md: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  me: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  mk: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  mt: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  nl: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  no: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  pl: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  pt: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  ro: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: true,
+  },
+  rs: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  se: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  si: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  sk: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  tn: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  tr: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  ua: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+  xk: {
+    englishName: "",
+    emojiFlag: "",
+    isFavorite: false,
+  },
+};

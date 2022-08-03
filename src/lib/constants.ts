@@ -1,7 +1,11 @@
 import { en } from "../i18n/en";
 import type { AvailalbeTranslation, Language } from "../i18n/provider";
 
+// -------------------------------[ Mixpanel ]----------------------------------
+
 export const MIXPANEL_TOKEN = "398538d67f091a997ba22e8dc1b4d013";
+
+// --------------------------------[ Mapbox ]-----------------------------------
 
 export const MAPBOX_TOKEN =
   "pk.eyJ1IjoicHJpc21hLWRhdmlkcCIsImEiOiJja3ZlMGs3bm00N3NyMm9scHYxcDcwMW5lIn0.al4e5xd-S95t1srowwoWXw";
@@ -10,20 +14,27 @@ export const MAPBOX_STYLES = {
   SATELLITE: "mapbox://styles/mapbox/satellite-streets-v11",
 };
 
+// ---------------------------[ LocalStorage Keys ]-----------------------------
+
 export const SHOWN_INTRO = "reports_v2__shownIntroAt";
 export const COOKIE_CONSENT = "reports_v2__acceptedCookies";
 export const LANGUAGE_USED = "reports_v2__language";
+export const SAVED_SETTINGS = "reports_v2__settings";
+
+// ---------------------------------[ i18n ]------------------------------------
 
 export const SUPPORTED_LANGS = ["en-GB", "ro-RO"];
 export const DEFAULT_LANGUAGE: Language = "en-GB";
 export const DEFAULT_TRANSLATION: AvailalbeTranslation = en;
 
-export const SAVED_SETTINGS = "reports_v2__settings";
+// -------------------------------[ Countries ]---------------------------------
 
 /**
  * Names and emojis for the available countries.
+ * 
+ * **For exported countries @see AVAILABLE_COUNTRIES below!**
  */
-export const COUNTRY_DATA = {
+const COUNTRIES_IN_DB = {
   ad: {
     englishName: "Andorra",
     emojiFlag: "🇦🇩",
@@ -80,188 +91,199 @@ export const COUNTRY_DATA = {
     isFavorite: false,
   },
   dz: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Algeria",
+    emojiFlag: "🇩🇿",
     isFavorite: false,
   },
   ee: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Estonia",
+    emojiFlag: "🇪🇪",
     isFavorite: false,
   },
   es: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Spain",
+    emojiFlag: "🇪🇸",
     isFavorite: false,
   },
   fi: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Finland",
+    emojiFlag: "🇫🇮",
     isFavorite: false,
   },
   fr: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "France",
+    emojiFlag: "🇫🇷",
     isFavorite: false,
   },
   gb: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "United Kingdom",
+    emojiFlag: "🇬🇧",
     isFavorite: false,
   },
   ge: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Georgia",
+    emojiFlag: "🇬🇪",
     isFavorite: false,
   },
   gi: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Gibraltar",
+    emojiFlag: "🇬🇮",
     isFavorite: false,
   },
   gr: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Greece",
+    emojiFlag: "🇬🇷",
     isFavorite: false,
   },
   hr: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Croatia",
+    emojiFlag: "🇭🇷",
     isFavorite: false,
   },
   hu: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Hungary",
+    emojiFlag: "🇭🇺",
     isFavorite: true,
   },
   ie: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Ireland",
+    emojiFlag: "🇮🇪",
     isFavorite: false,
   },
   im: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Isle of Man",
+    emojiFlag: "🇮🇲",
     isFavorite: false,
   },
   is: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Iceland",
+    emojiFlag: "🇮🇸",
     isFavorite: false,
   },
   it: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Italy",
+    emojiFlag: "🇮🇹",
     isFavorite: false,
   },
   li: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Liechtenstein",
+    emojiFlag: "🇱🇮",
     isFavorite: false,
   },
   lt: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Lithuania",
+    emojiFlag: "🇱🇹",
     isFavorite: false,
   },
   lv: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Latvia",
+    emojiFlag: "🇱🇻",
     isFavorite: false,
   },
   ma: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Morocco",
+    emojiFlag: "🇲🇦",
     isFavorite: false,
   },
   mc: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Monaco",
+    emojiFlag: "🇲🇨",
     isFavorite: false,
   },
   md: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Moldova",
+    emojiFlag: "🇲🇩",
     isFavorite: false,
   },
   me: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Montenegro",
+    emojiFlag: "🇲🇪",
     isFavorite: false,
   },
   mk: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "North Macedonia",
+    emojiFlag: "🇲🇰",
     isFavorite: false,
   },
   mt: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Malta",
+    emojiFlag: "🇲🇹",
     isFavorite: false,
   },
   nl: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Netherlands",
+    emojiFlag: "🇳🇱",
     isFavorite: false,
   },
   no: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Norway",
+    emojiFlag: "🇳🇴",
     isFavorite: false,
   },
   pl: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Poland",
+    emojiFlag: "🇵🇱",
     isFavorite: false,
   },
   pt: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Portugal",
+    emojiFlag: "🇵🇹",
     isFavorite: false,
   },
   ro: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Romania",
+    emojiFlag: "🇷🇴",
     isFavorite: true,
   },
   rs: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Serbia",
+    emojiFlag: "🇷🇸",
     isFavorite: false,
   },
   se: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Sweden",
+    emojiFlag: "🇸🇪",
     isFavorite: false,
   },
   si: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Slovenia",
+    emojiFlag: "🇸🇮",
     isFavorite: false,
   },
   sk: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Slovakia",
+    emojiFlag: "🇸🇰",
     isFavorite: false,
   },
   tn: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Tunisia",
+    emojiFlag: "🇹🇳",
     isFavorite: false,
   },
   tr: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Turkey",
+    emojiFlag: "🇹🇷",
     isFavorite: false,
   },
   ua: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Ukraine",
+    emojiFlag: "🇺🇦",
     isFavorite: false,
   },
   xk: {
-    englishName: "",
-    emojiFlag: "",
+    englishName: "Kosovo",
+    emojiFlag: "🇽🇰",
     isFavorite: false,
   },
 };
+
+/**
+ * Countries with available reports
+ * 
+ * TODO: This should be dynamic - populated with the countries that have reports
+ */
+export const AVAILABLE_COUNTRIES = {
+  bg: COUNTRIES_IN_DB.bg,
+  hu: COUNTRIES_IN_DB.hu,
+  ro: COUNTRIES_IN_DB.ro,
+}

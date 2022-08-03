@@ -3,7 +3,7 @@
 
   import { onDestroy, setContext } from "svelte";
   import { mapbox, MAPBOX_KEY } from "./mapbox.js";
-  import { MAPBOX_STYLES } from "../../lib/constants.js";
+  import { MAPBOX_STYLES } from "../../constants.js";
   import { SettingsService } from "../../lib/settingsService.js";
   import { currentSettings } from "../../stores.js";
 

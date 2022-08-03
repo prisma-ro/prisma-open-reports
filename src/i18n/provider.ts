@@ -1,4 +1,4 @@
-import { DEFAULT_LANGUAGE, DEFAULT_TRANSLATION, LANGUAGE_USED, SUPPORTED_LANGS } from "../lib/constants";
+import { DEFAULT_LANGUAGE, DEFAULT_TRANSLATION, LANGUAGE_USED, SUPPORTED_LANGS } from "../constants";
 import { currentLanguage, intl } from "../stores";
 import { en } from "./en";
 import { ro } from "./ro";

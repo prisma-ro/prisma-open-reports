@@ -17,11 +17,14 @@ export const en = {
   bottomControls: {
     addReport: "Add a report",
     satellite: "Satellite",
-    region: "Region",
+    countriesSelected: {
+      singular: "Selected country",
+      plural: "Sel. countries",
+    },
     change: "Chnage",
     regionChangeModal: {
-      title: "Change the map region",
-      bodyHTML: /*html*/`Test <br /> test2`,
+      title: "Select the countries whose reports you want to see",
+      bodyHTML: /*html*/`Soon you will be able to view reports from even more countries! Until then, reports can be added anywhere in Europe!<strong> Stay Safe! </strong>`,
       save: "Save",
     }
   }

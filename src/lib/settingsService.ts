@@ -1,6 +1,6 @@
 import { currentSettings } from "../stores";
 import { Settings, SettingsLike } from "../models/settings";
-import { SAVED_SETTINGS } from "./constants";
+import { SAVED_SETTINGS } from "../constants";
 
 /**
  * Handle settings operations

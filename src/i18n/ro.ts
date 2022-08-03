@@ -17,11 +17,14 @@ export const ro = {
   bottomControls: {
     addReport: "Adaugă un raport",
     satellite: "Satelit",
-    region: "Regiune",
+    countriesSelected: {
+      singular: "Țara selectată",
+      plural: "Țări selectate",
+    },
     change: "Schimbă",
     regionChangeModal: {
-      title: "Schimbă regiunea hărții",
-      bodyHTML: /*html*/`Test <br /> test2`,
+      title: "Selectează țările ale căror rapoarte vrei să le vezi",
+      bodyHTML: /*html*/`În curând vei putea vizualiza rapoarte din și mai multe țări! Până atunci, pot fi adaugate rapoarte oriunde în Europa!<strong> Stay Safe! </strong>`,
       save: "Salvează"
     }
   }

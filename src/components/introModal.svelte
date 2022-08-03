@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { COOKIE_CONSENT, SHOWN_INTRO } from "../lib/constants";
+  import { COOKIE_CONSENT, SHOWN_INTRO } from "../constants";
 
-  import { MixpanelService } from "../lib/mixpanel";
+  import { MixpanelService } from "../lib/mixpanelService";
 
   import IntroTile from "./introTile.svelte";
 

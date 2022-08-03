@@ -2,7 +2,7 @@
   import Map from "../components/map/map.svelte";
 
   import { onMount } from "svelte";
-  import { MixpanelService } from "../lib/mixpanel";
+  import { MixpanelService } from "../lib/mixpanelService";
   import { HistoryManager } from "../lib/historyManager";
   import { SettingsService } from "../lib/settingsService";
 

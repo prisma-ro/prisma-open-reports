@@ -1,5 +1,5 @@
 import mapbox from "mapbox-gl";
-import { MAPBOX_TOKEN } from "../../lib/constants";
+import { MAPBOX_TOKEN } from "../../constants";
 
 mapbox.accessToken = MAPBOX_TOKEN;
 

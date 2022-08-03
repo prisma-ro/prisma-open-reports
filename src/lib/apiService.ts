@@ -1,4 +1,4 @@
-import { MixpanelService } from "./mixpanel";
+import { MixpanelService } from "./mixpanelService";
 
 /**
  * Handle API related ops

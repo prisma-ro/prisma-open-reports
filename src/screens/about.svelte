@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { HistoryManager } from "../lib/historyManager";
-  import { MixpanelService } from "../lib/mixpanel";
+  import { MixpanelService } from "../lib/mixpanelService";
 
   onMount(() => {
     MixpanelService.event("Page View", { page: "Data Protection" });

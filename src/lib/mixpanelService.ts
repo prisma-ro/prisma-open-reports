@@ -1,5 +1,5 @@
 import mixpanel from "mixpanel-browser";
-import { COOKIE_CONSENT, MIXPANEL_TOKEN } from "./constants";
+import { COOKIE_CONSENT, MIXPANEL_TOKEN } from "../constants";
 
 export class MixpanelService {
   /**

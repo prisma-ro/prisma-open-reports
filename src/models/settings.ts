@@ -1,4 +1,4 @@
-import type { AVAILABLE_COUNTRIES } from "../lib/constants";
+import type { AVAILABLE_COUNTRIES } from "../constants";
 
 export type SettingsLike = Partial<Settings>;
 
@@ -6,7 +6,7 @@ type Settings_MapLimits = ReturnType<
   typeof DefaultSettings.getHardcodedMapLimits
 >;
 
-type Settings_SelectedCountries = (keyof typeof AVAILABLE_COUNTRIES)[];
+export type Settings_SelectedCountries = (keyof typeof AVAILABLE_COUNTRIES)[];
 
 /**
  * Representation for the user's preferences.

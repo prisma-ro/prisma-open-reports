@@ -1,6 +1,6 @@
 import { Writable, writable } from "svelte/store";
 import type { AvailalbeTranslation, Language } from "./i18n/provider";
-import { DEFAULT_LANGUAGE, DEFAULT_TRANSLATION } from "./lib/constants";
+import { DEFAULT_LANGUAGE, DEFAULT_TRANSLATION } from "./constants";
 import { Settings } from "./models/settings";
 
 // Generic

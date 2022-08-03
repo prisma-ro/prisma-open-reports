@@ -1,20 +1,38 @@
 <script lang="ts">
+  import { AVAILABLE_COUNTRIES } from "../../constants";
+  import type { Country } from "../../constants";
   import { SettingsService } from "../../lib/settingsService";
-  import { intl } from "../../stores";
-import UpdateRegionModal from "./updateRegionModal.svelte";
+  import type { Settings } from "../../models/settings";
+  import { currentSettings, intl } from "../../stores";
+  import UpdateRegionModal from "./updateRegionModal.svelte";
 
   const s = SettingsService.instance;
 
   let useSatellite: boolean = s.settings.useSatellite;
+  let selectedCountries: Country[];
 
   const onChangeUseSatellite = () => {
     s.settings.useSatellite = useSatellite;
     s.applyUpdate();
   };
+
+  currentSettings.subscribe((settings) => {
+    selectedCountries = settings.selectedCountries.map(
+      (c) => AVAILABLE_COUNTRIES[c]
+    );
+  });
+
+  const getCountryEmojis = (countries: Country[]): string => {
+    let s = "";
+    selectedCountries.forEach((country) => {
+      s += `${country.emojiFlag} `;
+    });
+    return s.substr(0, s.length - 1);
+  };
 </script>
 
 <!-- Modals -->
-<UpdateRegionModal id="update-region-modal" />
+<UpdateRegionModal id="update-region-modal" {selectedCountries} />
 
 <!-- Controls -->
 <section
@@ -57,7 +75,11 @@ import UpdateRegionModal from "./updateRegionModal.svelte";
       </li>
       <hr />
       <div class="w-full mt-2 text-center">
-        {$intl.bottomControls.region}: 🇷🇴
+        {selectedCountries.length > 1
+          ? $intl.bottomControls.countriesSelected.plural
+          : $intl.bottomControls.countriesSelected.singular} : {getCountryEmojis(
+          selectedCountries
+        )}
       </div>
       <li>
         <label for="update-region-modal" class="btn btn-ghost normal-case">

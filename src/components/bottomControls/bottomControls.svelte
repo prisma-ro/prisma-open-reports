@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { SettingsService } from "../lib/settingsService";
-  import { intl } from "../stores";
+  import { SettingsService } from "../../lib/settingsService";
+  import { intl } from "../../stores";
+import UpdateRegionModal from "./updateRegionModal.svelte";
 
   const s = SettingsService.instance;
 
@@ -12,25 +13,10 @@
   };
 </script>
 
-<!-- Update Map Region Modal -->
-<input type="checkbox" id="update-region-modal" class="modal-toggle" />
-<div class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">
-      {$intl.bottomControls.regionChangeModal.title}
-    </h3>
-    <p class="py-4">
-      {@html $intl.bottomControls.regionChangeModal.bodyHTML}
-    </p>
-    <div class="modal-action">
-      <label for="update-region-modal" class="btn">
-        {$intl.bottomControls.regionChangeModal.save}
-      </label>
-    </div>
-  </div>
-</div>
-<!-- END:Update Map Region Modal -->
+<!-- Modals -->
+<UpdateRegionModal id="update-region-modal" />
 
+<!-- Controls -->
 <section
   class="fixed flex justify-between py-2 px-6 z-30 bottom-8 right-1/2 transform translate-x-1/2 w-full md:w-auto md:bottom-10 md:right-10 md:translate-x-0 md:rounded-xl md:bg-white md:bg-opacity-60"
 >

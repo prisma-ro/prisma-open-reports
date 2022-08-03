@@ -1,66 +1,6 @@
 import { currentSettings } from "../stores";
+import { Settings, SettingsLike } from "../models/settings";
 import { SAVED_SETTINGS } from "./constants";
-
-type SettingsLike = Partial<Settings>;
-
-type Settings_MapLimits = ReturnType<typeof Settings.getHardcodedMapLimits>;
-
-/**
- * Representation for the user's preferences.
- */
-export class Settings {
-  /**
-   * Should the map be displayed in satellite mode
-   */
-  useSatellite: boolean;
-
-  /**
-   * Last location where the user was
-   *
-   * Format: [long, lat] (Mapbox format)
-   */
-  lastLocation: number[];
-
-  /**
-   * Last zoom level where the user was
-   */
-  lastZoom: number;
-
-  /**
-   * Hard-coded values for the map's bounds & min/max zoom level
-   */
-  mapLimits: Settings_MapLimits;
-
-  constructor(
-    useSatellite: boolean,
-    lastLocation: number[],
-    lastZoom: number,
-    mapLimits: Settings_MapLimits
-  ) {
-    this.useSatellite = useSatellite;
-    this.lastLocation = lastLocation;
-    this.lastZoom = lastZoom;
-    this.mapLimits = mapLimits;
-  }
-
-  static defaultSettings(): Settings {
-    return new Settings(
-      false,
-      [24.849442, 46.069881],
-      5.5,
-      this.getHardcodedMapLimits()
-    );
-  }
-
-  static getHardcodedMapLimits() {
-    return {
-      boundsBtmLeft: [-27, 34], // North Atlantic Ocean / Around Morocco
-      boundsTopRight: [42, 71], // Barents Sea / North of Russia
-      minZoom: 5,
-      maxZoom: 22,
-    };
-  }
-}
 
 /**
  * Handle settings operations
@@ -106,19 +46,20 @@ export class SettingsService {
           parsed.useSatellite!,
           parsed.lastLocation!,
           parsed.lastZoom!,
-          parsed.mapLimits!,
+          parsed.selectedCountries!,
+          parsed.mapLimits!
         );
       } else {
         console.debug("[SettingsService] Not found, using defaults");
 
         // Set & Save defaults:
-        this._settings = Settings.defaultSettings();
+        this._settings = Settings.defaultSettings;
         this.applyUpdate();
-        return Settings.defaultSettings();
+        return Settings.defaultSettings;
       }
     } catch (e) {
       console.warn(`[SettingsService] Error while getting settings: ${e}`);
-      return Settings.defaultSettings();
+      return Settings.defaultSettings;
     }
   }
 

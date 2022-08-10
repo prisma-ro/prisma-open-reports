@@ -1,9 +1,9 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import { COOKIE_CONSENT, SHOWN_INTRO } from "../constants";
 
   import { MixpanelService } from "../lib/mixpanelService";
 
-  import IntroTile from "./introTile.svelte";
+  import IntroTile from "./onboarding/introTile.svelte";
 
   export let modalShown: boolean;
 
@@ -37,7 +37,6 @@
       aria-hidden="true"
     />
 
-    <!-- This element is to trick the browser into centering the modal contents. -->
     <span
       class="hidden sm:inline-block sm:align-middle sm:h-screen"
       aria-hidden="true">&#8203;</span
@@ -135,4 +134,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

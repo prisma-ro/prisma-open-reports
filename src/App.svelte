@@ -19,13 +19,22 @@ limitations under the License.
   import About from "./screens/about.svelte";
   import DataProtection from "./screens/dataProtection.svelte";
   import BottomControls from "./components/bottomControls/bottomControls.svelte";
+  import OnboardingModal from "./components/onboarding/onboardingModal.svelte";
 
   import { isLoading, currentPage } from "./stores";
   import { TranslationProvider } from "./i18n/provider";
   import { SettingsService } from "./lib/settingsService";
+  import { CURRENT_ONBOARDING_REF, SHOWN_ONBOARDING } from "./constants";
 
   TranslationProvider.initialize();
   SettingsService.initialize();
+
+  const needsToShowOnboarding = (): boolean => {
+    const saved = window.localStorage.getItem(SHOWN_ONBOARDING);
+
+    if (!saved) return true;
+    return saved !== CURRENT_ONBOARDING_REF;
+  };
 </script>
 
 <main class="antialiased">
@@ -36,12 +45,16 @@ limitations under the License.
   {:else if $currentPage == "dataProtection"}
     <DataProtection />
   {:else}
-    <Map />
+    <!-- <Map /> -->
     <BottomControls />
   {/if}
 
   {#if $isLoading}
     <progress class="progress absolute top-0 z-10 w-full rounded-none" />
+  {/if}
+
+  {#if needsToShowOnboarding()}
+    <OnboardingModal id="onboarding" />
   {/if}
 </main>
 
@@ -94,7 +107,6 @@ limitations under the License.
     <Map />
   {/if}
 </main> -->
-
 <style global lang="postcss">
   @tailwind base;
   @tailwind components;

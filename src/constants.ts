@@ -1,9 +1,11 @@
 import { en } from "./i18n/en";
 import type { AvailalbeTranslation, Language } from "./i18n/provider";
 
-// -------------------------------[ Mixpanel ]----------------------------------
+// --------------------------------[ Generic ]----------------------------------
 
 export const MIXPANEL_TOKEN = "398538d67f091a997ba22e8dc1b4d013";
+
+export const CURRENT_ONBOARDING_REF = "aug22_01";
 
 // --------------------------------[ Mapbox ]-----------------------------------
 
@@ -16,7 +18,7 @@ export const MAPBOX_STYLES = {
 
 // ---------------------------[ LocalStorage Keys ]-----------------------------
 
-export const SHOWN_INTRO = "reports_v2__shownIntroAt";
+export const SHOWN_ONBOARDING = "reports_v2__onboarding";
 export const COOKIE_CONSENT = "reports_v2__acceptedCookies";
 export const LANGUAGE_USED = "reports_v2__language";
 export const SAVED_SETTINGS = "reports_v2__settings";

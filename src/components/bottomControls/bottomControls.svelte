@@ -42,7 +42,9 @@
     <!-- svelte-ignore a11y-label-has-associated-control -->
     <label
       tabindex="0"
-      class="btn btn-ghost btn-circle glassmorphism text-primary border-2 border-gray-200"
+      class="btn btn-ghost btn-circle text-primary border-2 border-gray-200 glassmorphism {$currentSettings.useSatellite
+        ? 'bg-white bg-opacity-75'
+        : ''}"
     >
       <svg
         class="h-6 w-6"
@@ -91,7 +93,9 @@
 
   <!-- Right -->
   <button
-    class="btn btn-ghost rounded-xl glassmorphism text-primary border-2 border-gray-200 normal-case"
+    class="btn btn-ghost rounded-xl text-primary border-2 border-gray-200 normal-case glassmorphism {$currentSettings.useSatellite
+      ? 'bg-white bg-opacity-75'
+      : ''}"
   >
     {$intl.bottomControls.addReport}
   </button>

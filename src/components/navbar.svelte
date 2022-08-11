@@ -1,6 +1,6 @@
 <script lang="ts">
   import { HistoryManager } from "../lib/historyManager";
-  import { changePage } from "../stores";
+  import { changePage, currentSettings } from "../stores";
   import { Language, TranslationProvider } from "../i18n/provider";
   import { intl } from "../stores";
 
@@ -20,7 +20,9 @@
 </script>
 
 <nav
-  class="navbar absolute top-0 z-20 glassmorphism border-b border-b-gray-200"
+  class="navbar absolute top-0 z-20 border-b border-b-gray-200 glassmorphism select-none {$currentSettings.useSatellite
+    ? 'bg-white bg-opacity-75'
+    : ''}"
 >
   <div class="navbar-start">
     <div class="dropdown">

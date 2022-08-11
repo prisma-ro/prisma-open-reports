@@ -77,7 +77,7 @@ limitations under the License.
   {/if}
 
   {#if needsToShowOnboarding()}
-    <OnboardingModal id="onboarding" />
+    <OnboardingModal />
   {/if}
 </main>
 

@@ -9,7 +9,6 @@
 
   import IntroTile from "./introTile.svelte";
 
-  export let id: string;
   let modal: HTMLElement;
 
   onMount(() => {

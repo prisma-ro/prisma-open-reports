@@ -24,16 +24,39 @@ limitations under the License.
   import { isLoading, currentPage } from "./stores";
   import { TranslationProvider } from "./i18n/provider";
   import { SettingsService } from "./lib/settingsService";
-  import { CURRENT_ONBOARDING_REF, SHOWN_ONBOARDING } from "./constants";
+  import {
+    COOKIE_CONSENT,
+    CURRENT_ONBOARDING_REF,
+    ONE_MONTH_MS,
+    SHOWN_ONBOARDING,
+  } from "./constants";
 
   TranslationProvider.initialize();
   SettingsService.initialize();
 
   const needsToShowOnboarding = (): boolean => {
+    const cookies = window.localStorage.getItem(COOKIE_CONSENT);
     const saved = window.localStorage.getItem(SHOWN_ONBOARDING);
 
-    if (!saved) return true;
-    return saved !== CURRENT_ONBOARDING_REF;
+    // Never got shown
+    if (!saved || !cookies) return true;
+
+    // Outdated onboarding
+    if (saved !== CURRENT_ONBOARDING_REF) return true;
+
+    // Expired cookie consent (3 months)
+    if (
+      new Date().getTime() - new Date(cookies.split("+")[1]).getTime() >
+      3 * ONE_MONTH_MS
+    ) {
+      window.localStorage.removeItem(COOKIE_CONSENT);
+      window.localStorage.removeItem(SHOWN_ONBOARDING);
+
+      return true;
+    }
+
+    // Ok, do not show onboaading
+    return false;
   };
 </script>
 
@@ -45,7 +68,7 @@ limitations under the License.
   {:else if $currentPage == "dataProtection"}
     <DataProtection />
   {:else}
-    <!-- <Map /> -->
+    <Map />
     <BottomControls />
   {/if}
 

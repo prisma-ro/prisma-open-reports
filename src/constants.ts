@@ -7,6 +7,8 @@ export const MIXPANEL_TOKEN = "398538d67f091a997ba22e8dc1b4d013";
 
 export const CURRENT_ONBOARDING_REF = "aug22_01";
 
+export const ONE_MONTH_MS = 60 * 60 * 24 * 30 * 1000;
+
 // --------------------------------[ Mapbox ]-----------------------------------
 
 export const MAPBOX_TOKEN =

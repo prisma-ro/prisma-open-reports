@@ -92,7 +92,14 @@
   </div>
 
   <div class="navbar-center flex flex-col items-center">
-    <a href="/" class="font-semibold py-1 text-xl"> Prisma Reports </a>
+    <button
+      class="font-semibold py-1 text-xl"
+      on:click={() => {
+        goTo("map");
+      }}
+    >
+      Prisma Reports
+    </button>
     <div
       class="tooltip tooltip-bottom tooltip-accent"
       data-tip={$intl.navbar.mode.tooltipView}

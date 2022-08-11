@@ -57,9 +57,9 @@ export class HistoryManager {
    * Call in `window.onpopstate`
    */
   onPopStateCallback() {
-    if (this.state.returnTo.includes("protejarea-datelor")) {
+    if (this.state.returnTo.includes("privacy")) {
       changePage("dataProtection");
-    } else if (this.state.returnTo.includes("despre")) {
+    } else if (this.state.returnTo.includes("about")) {
       changePage("about");
     } else {
       changePage("map");
@@ -67,14 +67,14 @@ export class HistoryManager {
   }
 
   /**
-   * Used to process the initial url, i.e.: If we have `#despre` in the url,
+   * Used to process the initial url, i.e.: If we have `#about` in the url,
    * navigate to the About page.
    */
   static processInitialUrl() {
     const url = window.location.href;
-    if (url.includes("protejarea-datelor")) {
+    if (url.includes("privacy")) {
       changePage("dataProtection");
-    } else if (url.includes("despre")) {
+    } else if (url.includes("about")) {
       changePage("about");
     }
   }
@@ -90,18 +90,18 @@ export class HistoryManager {
         history.pushState(
           null,
           "",
-          `#despre?returnTo=${window.btoa(window.location.href)}`
+          `#about?returnTo=${window.btoa(window.location.href)}`
         );
         return;
       case "dataProtection":
         history.pushState(
           null,
           "",
-          `#protejarea-datelor?returnTo=${window.btoa(window.location.href)}`
+          `#privacy?returnTo=${window.btoa(window.location.href)}`
         );
         return;
       default:
-        history.pushState(null, "", "#map");
+        history.pushState(null, "", "/");
         break;
     }
   }

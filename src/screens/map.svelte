@@ -3,21 +3,22 @@
 
   import { onMount } from "svelte";
   import { MixpanelService } from "../lib/mixpanelService";
-  import { HistoryManager } from "../lib/historyManager";
   import { SettingsService } from "../lib/settingsService";
+  import { isLoading } from "../stores";
 
   const s = SettingsService.instance;
 
   onMount(() => {
+    isLoading.set(true);
     MixpanelService.event("Page View", { page: "Map" });
-
-    // Check for an initial page in the url
-    HistoryManager.processInitialUrl();
   });
 </script>
 
 <section class="h-screen relative">
   <Map
+    onLoad={() => {
+      isLoading.set(false);
+    }}
     onClick={(pos) => {
       console.log(`Clicked: ${pos}`);
     }}

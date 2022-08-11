@@ -23,6 +23,7 @@ limitations under the License.
 
   import { isLoading, currentPage } from "./stores";
   import { TranslationProvider } from "./i18n/provider";
+  import { HistoryManager } from "./lib/historyManager";
   import { SettingsService } from "./lib/settingsService";
   import {
     COOKIE_CONSENT,
@@ -33,6 +34,9 @@ limitations under the License.
 
   TranslationProvider.initialize();
   SettingsService.initialize();
+
+  // Check for an initial page in the url (# based routing)
+  HistoryManager.processInitialUrl();
 
   const needsToShowOnboarding = (): boolean => {
     const cookies = window.localStorage.getItem(COOKIE_CONSENT);

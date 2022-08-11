@@ -20,6 +20,7 @@
   let container: HTMLElement;
   let map: mapbox.Map;
 
+  export let onLoad: () => void;
   export let onClick: (pos: LngLat) => void;
   export let onMoveEnd: (center: LngLat) => void;
   export let onZoomEnd: (zoom: number) => void;
@@ -40,6 +41,7 @@
       minZoom: s.settings.mapLimits.minZoom,
     });
 
+    map.on("load", onLoad);
     map.on("click", (ev) => {
       onClick(ev.lngLat);
     });

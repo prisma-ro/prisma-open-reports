@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./src/**/*.svelte"],
+  content: ["./src/**/*.{svelte, ts}"],
   theme: {
     extend: {
       fontFamily: {

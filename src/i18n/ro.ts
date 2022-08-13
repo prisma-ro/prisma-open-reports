@@ -150,7 +150,7 @@ export const ro = {
         title: "Ce se întâmplă cu datele colectate?",
         bodyHTML: /*html*/ `
         Datele colectate sunt supuse <a
-          href="docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf"
+          href="docs/Acord_Prelucrarea_Datelor__Data_Processing_Agreement__Open_Reports.pdf"
           class="text-primary"
         >
           Acordului de Prelucrare a Datelor Furnizate

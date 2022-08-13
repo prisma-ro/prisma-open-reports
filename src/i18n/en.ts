@@ -148,7 +148,7 @@ export const en = {
         title: "What happens to the data collected?",
         bodyHTML: /*html*/ `
         The data collected is subject to the <a
-          href="docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf"
+          href="docs/Acord_Prelucrarea_Datelor__Data_Processing_Agreement__Open_Reports.pdf"
           class="text-primary"
         >
           Provided Data Processing Agreement ("Acordul de Prelucrare a Datelor Furnizate")

@@ -6,7 +6,7 @@ Public portal for report submissions. **[Submit a report](https://reports.prisma
 
 - Collected data shall be entirely anonymous _(Do not collect any personally identifiable data)_.
 
-- You may find the agreement [here](public/docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf).
+- You may find the agreement [here](public/docs/Acord_Prelucrarea_Datelor__Data_Processing_Agreement__Open_Reports.pdf).
 
 ## Deployment status
 

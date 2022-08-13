@@ -36,7 +36,7 @@
     <div class="text-gray-600 text-center leading-4 mt-2">
       <small>
         <a
-          href="docs/Acord-Prelucrarea-Datelor-Furnizate-pe-Platforma-Open-Reports.pdf"
+          href="docs/Acord_Prelucrarea_Datelor__Data_Processing_Agreement__Open_Reports.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >

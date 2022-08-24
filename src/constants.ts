@@ -1,11 +1,27 @@
 import { en } from "./i18n/en";
 import type { AvailalbeTranslation, Language } from "./i18n/provider";
+import type { SettingsUpdateBehaviour } from "./models/settings";
 
 // --------------------------------[ Generic ]----------------------------------
 
 export const MIXPANEL_TOKEN = "398538d67f091a997ba22e8dc1b4d013";
 
+/**
+ * The current version of the onboarding, if it doesn't match the stored one,
+ * show the onboarding again.
+ */
 export const CURRENT_ONBOARDING_REF = "aug22_01";
+
+/**
+ * The current version of the settings, if it doesn't match the stored one,
+ * update it or owerwrite it with the defaults - @see SETTINGS_UPDATE_BEHAVIOUR.
+ */
+export const CURRENT_SETTINGS_REF = "aug22_01";
+
+/**
+ * What to do when the settings are outdated.
+ */
+export const SETTINGS_UPDATE_BEHAVIOUR: SettingsUpdateBehaviour = "overwrite";
 
 export const ONE_MONTH_MS = 60 * 60 * 24 * 30 * 1000;
 
@@ -24,6 +40,7 @@ export const SHOWN_ONBOARDING = "reports_v2__onboarding";
 export const COOKIE_CONSENT = "reports_v2__acceptedCookies";
 export const LANGUAGE_USED = "reports_v2__language";
 export const SAVED_SETTINGS = "reports_v2__settings";
+export const SAVED_SETTINGS_VERSION = "reports_v2__settingsVersion";
 
 // ---------------------------------[ i18n ]------------------------------------
 

@@ -1,5 +1,28 @@
 /// <reference types="svelte" />
 
+import type { Country } from "./constants";
+import type { PublicReport } from "./models/report";
+
+// ----------------------------------[ APIs ]-----------------------------------
+
+/**
+ * Typed return object from Prisma APIs
+ * 
+ * @template T the type of `APIResponse.content` if the request was successful
+ * @template E the type of `APIResponse.content` if the request failed
+ */
+type APIResponse<T, E = string> = {
+  status: "ok",
+  content: T,
+} | {
+  status: "fail",
+  content: E,
+}
+
+type PublicReportLike = Partial<PublicReport>;
+
+// --------------------------------[ Generic ]----------------------------------
+
 type PrismaPage = "map" | "about" | "dataProtection";
 
 type EventName =

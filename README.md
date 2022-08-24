@@ -1,4 +1,4 @@
-# prisma-open-reports
+# prisma-open-reports // 2.0
 
 Public portal for report submissions. **[Submit a report](https://reports.prisma-safety.com)**.
 
@@ -6,7 +6,7 @@ Public portal for report submissions. **[Submit a report](https://reports.prisma
 
 - Collected data shall be entirely anonymous _(Do not collect any personally identifiable data)_.
 
-- You may find the agreement [here](public/docs/Acord_Prelucrarea_Datelor__Data_Processing_Agreement__Open_Reports.pdf).
+- You may find the agreement [here](public/docs/Acord_Prelucrarea_Datelor__Data_Processing_Agreement__Open_Reports.pdf) (Română / English).
 
 ## Deployment status
 
@@ -20,8 +20,7 @@ Public portal for report submissions. **[Submit a report](https://reports.prisma
 
 ## Folder Structure
 
-- `functions` - serverless functions used to process submitted reports
-    - An `.env` file is required for the 'submit' endpoint, see [`.env.demo`](functions/.env.demo) for details.
+- `supabase/functions` - Supabase Edge Functions
 - `public` - public content, ie: images
 - `src` - Svelte website source
 
@@ -32,7 +31,7 @@ Public portal for report submissions. **[Submit a report](https://reports.prisma
 
 ## Contributing Guide
 
-If you wish to contribute to generate_licenses please see [CONTRIBUTING.md](CONTRIBUTING.md).
+If you wish to contribute to Open Reports please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Code of Conduct
 

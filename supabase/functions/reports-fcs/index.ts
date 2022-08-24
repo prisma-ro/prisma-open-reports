@@ -47,13 +47,13 @@ serve(async (req) => {
 
     if (error) {
       result[country] = {
-        result: "fail",
-        error,
+        status: "fail",
+        content: error,
       };
     } else {
       result[country] = {
-        result: "ok",
-        data,
+        status: "ok",
+        content: data,
       };
     }
   }

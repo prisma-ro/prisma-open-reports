@@ -13,20 +13,20 @@ export class ReportsService {
 
   /**
    * Fetch publically available report data for the given countries
-   * 
-   * @param selectedCountries Countries to fetch reports from / for
-   * 
-   * @returns `Returnable` with (if `.wasSuccessful` is true) a list of 
+   *
+   * @param selectedCountryCodes Countries (2 letter code) to fetch reports for
+   *
+   * @returns `Returnable` with (if `.wasSuccessful` is true) a list of
    * `PublicReport`s for the given countries. If `.wasSuccessful` is false,
    * the `.error` property will contain the error.
-   * 
+   *
    * @see PublicReport
    * @see PublicReportLike
    * @see Returnable
    * @see APIResponse
    */
   static async fetchPublicReports(
-    selectedCountries: Country[]
+    selectedCountryCodes: string[]
   ): PromiseReturnable<PublicReport[]> {
     const url = `${ReportsService.apiSettings.baseUrl}/${ReportsService.apiSettings.endpoints.reports_for_countries}`;
 
@@ -35,7 +35,7 @@ export class ReportsService {
       res = await fetch(url, {
         method: "POST",
         body: JSON.stringify({
-          countries: selectedCountries.map((c) => c.countryCode),
+          countries: selectedCountryCodes,
         }),
         headers: {
           Accept: "application/json",
@@ -65,24 +65,22 @@ export class ReportsService {
     let reports: PublicReport[] = [];
 
     try {
-      selectedCountries.forEach((c) => {
-        if (Object.prototype.hasOwnProperty.call(json.content, c.countryCode)) {
-          const reportsForCountry = json.content[c.countryCode] as APIResponse<
+      selectedCountryCodes.forEach((countryCode) => {
+        if (Object.prototype.hasOwnProperty.call(json.content, countryCode)) {
+          const reportsForCountry = json.content[countryCode] as APIResponse<
             PublicReportLike[]
           >;
-  
+
           if (reportsForCountry.status !== "ok") {
             console.warn(
-              `[ReportsService] Unable to add reports for country ${
-                c.countryCode
-              } - Edge Function returned error: ${JSON.stringify(
+              `[ReportsService] Unable to add reports for country ${countryCode} - Edge Function returned error: ${JSON.stringify(
                 reportsForCountry.content
               )}`
             );
           } else {
             reports = [
               ...reports,
-              ...reportsForCountry.content.map(r => PublicReport.fromJson(r)),
+              ...reportsForCountry.content.map((r) => PublicReport.fromJson(r)),
             ];
           }
         }

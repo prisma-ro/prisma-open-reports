@@ -1,22 +1,39 @@
 <script lang="ts">
   import Map from "../components/map/map.svelte";
+  import Marker from "../components/map/marker.svelte";
 
   import { onMount } from "svelte";
   import { MixpanelService } from "../lib/mixpanelService";
   import { SettingsService } from "../lib/settingsService";
   import { isLoading } from "../stores";
+  import type { PublicReport } from "../models/report";
+  import { ReportsService } from "../lib/reportsService";
 
   const s = SettingsService.instance;
+  let reports: PublicReport[] = [];
 
   onMount(() => {
     isLoading.set(true);
     MixpanelService.event("Page View", { page: "Map" });
   });
+
+  const fetchReports = async () => {
+    const res = await ReportsService.fetchPublicReports(
+      s.settings.selectedCountries
+    );
+
+    if (!res.wasSuccessful) {
+      alert("failed to fetch reports!");
+    }
+
+    reports = res.data;
+  };
 </script>
 
 <section class="h-screen relative">
   <Map
-    onLoad={() => {
+    onLoad={async () => {
+      await fetchReports();
       isLoading.set(false);
     }}
     onClick={(pos) => {
@@ -32,5 +49,9 @@
       s.settings.lastZoom = zoom < 10 ? zoom : zoom - 2;
       s.applyUpdate();
     }}
-  />
+  >
+    {#each reports as report}
+      <Marker lat={report.lat} lon={report.long} color={"#ff0000"} />
+    {/each}
+  </Map>
 </section>

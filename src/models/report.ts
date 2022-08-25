@@ -1,3 +1,5 @@
+export type AnyReport = PublicReport | ExtendedReport;
+
 /**
  * Report with only public properties
  */

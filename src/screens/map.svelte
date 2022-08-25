@@ -6,11 +6,11 @@
   import { MixpanelService } from "../lib/mixpanelService";
   import { SettingsService } from "../lib/settingsService";
   import { isLoading } from "../stores";
-  import type { PublicReport } from "../models/report";
+  import type { AnyReport, PublicReport } from "../models/report";
   import { ReportsService } from "../lib/reportsService";
 
   const s = SettingsService.instance;
-  let reports: PublicReport[] = [];
+  let reports: AnyReport[] = [];
 
   onMount(() => {
     isLoading.set(true);
@@ -28,6 +28,10 @@
 
     reports = res.data;
   };
+
+  const onReportClicked = (report: AnyReport) => {
+    alert(`ID: ${report.id}`);
+  }
 </script>
 
 <section class="h-screen relative">
@@ -51,7 +55,7 @@
     }}
   >
     {#each reports as report}
-      <Marker lat={report.lat} lon={report.long} color={"#ff0000"} />
+      <Marker {report} onClick={onReportClicked}/>
     {/each}
   </Map>
 </section>

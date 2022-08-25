@@ -2,6 +2,7 @@ export const en = {
   generic: {
     backToMap: 'Back to the map',
     cookieSettings: 'Cookie settings',
+    error: 'Something went wrong',
   },
   
   navbar: {

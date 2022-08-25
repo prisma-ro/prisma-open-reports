@@ -2,6 +2,7 @@ export const ro = {
   generic: {
     backToMap: 'Înapoi la hartă',
     cookieSettings: 'Setări cookies',
+    error: 'Ceva nu a mers bine',
   },
   
   navbar: {

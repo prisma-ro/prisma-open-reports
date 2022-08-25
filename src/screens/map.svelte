@@ -5,25 +5,30 @@
   import { onMount } from "svelte";
   import { MixpanelService } from "../lib/mixpanelService";
   import { SettingsService } from "../lib/settingsService";
-  import { isLoading } from "../stores";
+  import { intl, isLoading } from "../stores";
   import type { AnyReport, PublicReport } from "../models/report";
   import { ReportsService } from "../lib/reportsService";
+  import ErrorModal from "../components/errorModal.svelte";
 
   const s = SettingsService.instance;
   let reports: AnyReport[] = [];
+  let error: string | null = null;
 
   onMount(() => {
     isLoading.set(true);
     MixpanelService.event("Page View", { page: "Map" });
   });
 
-  const fetchReports = async () => {
+  const fetchReports = async () => {    
     const res = await ReportsService.fetchPublicReports(
       s.settings.selectedCountries
     );
 
     if (!res.wasSuccessful) {
-      alert("failed to fetch reports!");
+      error = `Oops! ${$intl.generic.error}`;
+      setTimeout(() => {
+        error = null;
+      }, 3000);
     }
 
     reports = res.data;
@@ -31,8 +36,12 @@
 
   const onReportClicked = (report: AnyReport) => {
     alert(`ID: ${report.id}`);
-  }
+  };
 </script>
+
+{#if error}
+  <ErrorModal {error} />
+{/if}
 
 <section class="h-screen relative">
   <Map

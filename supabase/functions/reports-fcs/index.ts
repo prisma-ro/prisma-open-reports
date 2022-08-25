@@ -8,7 +8,7 @@ import {
 } from "../common.ts";
 
 console.log("Started function // reports-fcs - Reports for Countries");
-const config = new EndpointConfig(getCORSHeaders(["POST"]), "prod_aug22_01");
+const config = new EndpointConfig(getCORSHeaders(["POST"]), "aug22_03");
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {

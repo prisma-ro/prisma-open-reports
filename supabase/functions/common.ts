@@ -1,10 +1,10 @@
 // -------------------------------[ Supabase ]----------------------------------
-import { createClient } from 'https://esm.sh/@supabase/supabase-js';
+import { createClient } from "https://esm.sh/@supabase/supabase-js";
 
 export const supabaseClient = createClient(
-  Deno.env.get('SUPABASE_URL') ?? '',
-  Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
-)
+  Deno.env.get("SUPABASE_URL") ?? "",
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+);
 
 // ---------------------------------[ CORS ]------------------------------------
 
@@ -22,13 +22,12 @@ export const getCORSHeaders = (methods: ReqMethod[]): CORSHeaders => {
 // ----------------------------[ EndpointConfig ]-------------------------------
 
 export class EndpointConfig {
-  corsHeaders: CORSHeaders;
-  endpointVersion: string;
-
-  constructor(corsHeaders: CORSHeaders, endpointVersion: string) {
-    this.corsHeaders = corsHeaders;
-    this.endpointVersion = endpointVersion;
-  }
+  constructor(
+    public readonly corsHeaders: CORSHeaders,
+    public readonly endpointVersion: string,
+    public readonly cache: boolean = true,
+    public readonly cacheDuration: number = 600
+  ) {}
 }
 
 // -------------------------------[ Response ]----------------------------------
@@ -40,12 +39,17 @@ export const jsonResponse = (
   content: any,
   config: EndpointConfig
 ): Response => {
+  const cacheHeader = config.cache
+    ? `public, max-age=${config.cacheDuration}`
+    : "no-cache, no-store, must-revalidate";
+
   return new Response(JSON.stringify({ status, content }), {
     status: statusCode,
     headers: {
       ...config.corsHeaders,
+      "Cache-Control": cacheHeader,
       "Content-Type": "application/json",
-      "Version": config.endpointVersion,
+      "Prisma-Version": config.endpointVersion,
     },
   });
 };

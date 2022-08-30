@@ -1,4 +1,4 @@
-import { Writable, writable } from "svelte/store";
+import { get, Writable, writable } from "svelte/store";
 import type { AvailalbeTranslation, Language } from "./i18n/provider";
 import { DEFAULT_LANGUAGE, DEFAULT_TRANSLATION } from "./constants";
 import { Settings } from "./models/settings";
@@ -22,3 +22,7 @@ export const changePage = (newPage: PrismaPage) => {
 export const intl: Writable<AvailalbeTranslation> =
   writable(DEFAULT_TRANSLATION);
 export const currentLanguage: Writable<Language> = writable(DEFAULT_LANGUAGE);
+
+// Auth
+export const isLoggedIn: Writable<boolean> = writable(false);
+export const isAccountModalOpen: Writable<boolean> = writable(false);

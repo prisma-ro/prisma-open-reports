@@ -25,6 +25,21 @@ export const SETTINGS_UPDATE_BEHAVIOUR: SettingsUpdateBehaviour = "overwrite";
 
 export const ONE_MONTH_MS = 60 * 60 * 24 * 30 * 1000;
 
+// -------------------------------[ Supabase ]----------------------------------
+
+import { createClient } from "@supabase/supabase-js";
+
+const SUPABASE_URL = "https://wgxmvhgymsgitocptpfr.supabase.co";
+const SUPABASE_ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndneG12aGd5bXNnaXRvY3B0cGZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTg5OTc4OTIsImV4cCI6MTk3NDU3Mzg5Mn0.q_Mkx6oqZIb_iyeMLnuusSu1wYKvH34YqNIiiLTKz6s";
+
+export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+export const AUTH_REDIRECT_TO =
+  window.location.host === "reports.prisma-safety.com"
+    ? "https://reports.prisma-safety.com"
+    : "http://localhost:5000";
+
 // --------------------------------[ Mapbox ]-----------------------------------
 
 export const MAPBOX_TOKEN =
@@ -52,7 +67,7 @@ export const DEFAULT_TRANSLATION: AvailalbeTranslation = en;
 
 /**
  * Names and emojis for the available countries.
- * 
+ *
  * **For exported countries @see AVAILABLE_COUNTRIES below!**
  */
 const COUNTRIES_IN_DB = {
@@ -351,15 +366,15 @@ export interface Country {
   englishName: string;
   emojiFlag: string;
   isFavorite: boolean;
-};
+}
 
 /**
  * Countries with available reports
- * 
+ *
  * TODO: This should be dynamic - populated with the countries that have reports
  */
 export const AVAILABLE_COUNTRIES = {
   bg: COUNTRIES_IN_DB.bg,
   hu: COUNTRIES_IN_DB.hu,
   ro: COUNTRIES_IN_DB.ro,
-}
+};

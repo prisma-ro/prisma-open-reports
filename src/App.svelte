@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-
 <script lang="ts">
   import Navbar from "./components/navbar.svelte";
   import Map from "./screens/map.svelte";
@@ -22,7 +21,7 @@ limitations under the License.
   import BottomControls from "./components/bottomControls/bottomControls.svelte";
   import OnboardingModal from "./components/onboarding/onboardingModal.svelte";
 
-  import { isLoading, currentPage } from "./stores";
+  import { isLoading, currentPage, isLoggedIn } from "./stores";
   import { TranslationProvider } from "./i18n/provider";
   import { HistoryManager } from "./lib/historyManager";
   import { SettingsService } from "./lib/settingsService";
@@ -31,13 +30,21 @@ limitations under the License.
     CURRENT_ONBOARDING_REF,
     ONE_MONTH_MS,
     SHOWN_ONBOARDING,
+    supabaseClient,
   } from "./constants";
+  import AccountModal from "./components/accountModal/accountModal.svelte";
 
   TranslationProvider.initialize();
   SettingsService.initialize();
 
   // Check for an initial page in the url (# based routing)
   HistoryManager.processInitialUrl();
+
+  // Check for a logged in user
+  const supabaseUser = supabaseClient.auth.user();
+  if (supabaseUser !== null) {
+    isLoggedIn.set(true);
+  }
 
   const needsToShowOnboarding = (): boolean => {
     const cookies = window.localStorage.getItem(COOKIE_CONSENT);
@@ -66,6 +73,10 @@ limitations under the License.
 </script>
 
 <main class="antialiased">
+  <!-- AccountModal component is here, as all logic such as opening/closing
+  is dealt within -->
+  <AccountModal />
+
   <Navbar />
 
   {#if $currentPage == "about"}
@@ -73,7 +84,7 @@ limitations under the License.
   {:else if $currentPage == "dataProtection"}
     <DataProtection />
   {:else}
-    <Map />
+    <!-- <Map /> -->
     <BottomControls />
   {/if}
 

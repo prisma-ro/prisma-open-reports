@@ -1,6 +1,6 @@
 <script lang="ts">
   import { HistoryManager } from "../lib/historyManager";
-  import { changePage, currentSettings } from "../stores";
+  import { changePage, currentSettings, isAccountModalOpen } from "../stores";
   import { Language, TranslationProvider } from "../i18n/provider";
   import { intl } from "../stores";
 
@@ -14,8 +14,11 @@
     HistoryManager.goTo(page);
   };
 
-  const login = () => {
-    alert("todo");
+  const unfocus = () => {
+    const tmp = document.createElement("input");
+    document.body.appendChild(tmp);
+    tmp.focus();
+    document.body.removeChild(tmp);
   };
 </script>
 
@@ -25,7 +28,7 @@
     : ''}"
 >
   <div class="navbar-start">
-    <div class="dropdown">
+    <div class="dropdown" >
       <!-- svelte-ignore a11y-label-has-associated-control -->
       <label tabindex="0" class="btn btn-ghost btn-circle">
         <svg
@@ -51,6 +54,7 @@
           <button
             class="btn-ghost"
             on:click={() => {
+              unfocus();
               goTo("about");
             }}
           >
@@ -62,6 +66,7 @@
           <button
             class="btn-ghost"
             on:click={() => {
+              unfocus();
               goTo("dataProtection");
             }}
           >
@@ -72,9 +77,12 @@
         <li>
           <button
             class="btn btn-primary normal-case text-white"
-            on:click={login}
+            on:click={() => {
+              unfocus();
+              isAccountModalOpen.set(true);
+            }}
           >
-            {$intl.navbar.login}
+            {$intl.account.yourAccount}
           </button>
         </li>
         <li>

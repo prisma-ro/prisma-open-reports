@@ -1,23 +1,23 @@
 export const en = {
   generic: {
-    backToMap: 'Back to the map',
-    cookieSettings: 'Cookie settings',
-    error: 'Something went wrong',
+    backToMap: "Back to the map",
+    cookieSettings: "Cookie settings",
+    error: "Something went wrong",
   },
-  
+
   navbar: {
     about: "About",
     help: "Help",
     dataProtection: "Data Protection",
-    login: "Login",
     more: "Find out more",
 
     mode: {
       view: "View Only",
       add: "Create",
       tooltipView: "In this mode you can view previous reports",
-      tooltipAdd: "In this mode you can add new reports, by clicking on the map",
-    }
+      tooltipAdd:
+        "In this mode you can add new reports, by clicking on the map",
+    },
   },
 
   onboarding: {
@@ -46,7 +46,8 @@ export const en = {
       },
       tips: {
         title: "Tips:",
-        content: "For more options like the reports' region press the bottom left button!",
+        content:
+          "For more options like the reports' region press the bottom left button!",
       },
     },
     cookies: {
@@ -72,9 +73,9 @@ export const en = {
     change: "Chnage",
     regionChangeModal: {
       title: "Select the countries whose reports you want to see",
-      bodyHTML: /*html*/`Soon you will be able to view reports from even more countries! Until then, reports can be added anywhere in Europe!<strong> Stay Safe! </strong>`,
+      bodyHTML: /*html*/ `Soon you will be able to view reports from even more countries! Until then, reports can be added anywhere in Europe!<strong> Stay Safe! </strong>`,
       save: "Save",
-    }
+    },
   },
 
   about: {
@@ -188,4 +189,31 @@ export const en = {
       },
     ],
   },
-}
+
+  account: {
+    yourAccount: "Your account",
+    login: {
+      promptHTML: /*html*/ `
+        Log in or create an account using one of the following options 👇
+      `,
+      dataPrivacy:
+        "Important: Your account is not associated with any reports submitted by you, they remain anonymous forever 🔒",
+      noticeHTML: /*html*/ `
+        By using a Prisma Safety account, you agree to the <a
+          class="text-primary"
+          href="https://www.prisma-safety.com/terms"
+          target="_blank"
+          rel="noopener">
+            Terms and Conditions
+        </a> and the <a
+          class="text-primary"
+          href="https://www.prisma-safety.com/privacy"
+          target="_blank"
+          rel="noopener">
+            Privacy Policy
+        </a>.
+      `,
+    },
+    loggedin: {},
+  },
+};

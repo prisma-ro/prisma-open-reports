@@ -1,15 +1,14 @@
 export const ro = {
   generic: {
-    backToMap: 'Înapoi la hartă',
-    cookieSettings: 'Setări cookies',
-    error: 'Ceva nu a mers bine',
+    backToMap: "Înapoi la hartă",
+    cookieSettings: "Setări cookies",
+    error: "Ceva nu a mers bine",
   },
-  
+
   navbar: {
     about: "Despre",
     help: "Ajutor",
     dataProtection: "Protecția Datelor",
-    login: "Loghează-te",
     more: "Află mai multe",
 
     mode: {
@@ -190,5 +189,32 @@ export const ro = {
         `,
       },
     ],
+  },
+
+  account: {
+    yourAccount: "Contul tău",
+    login: {
+      promptHTML: /*html*/ `
+        Loghează-te sau creează un cont folosind una din următoarele opțiuni 👇
+      `,
+      dataPrivacy:
+        "Important: Contul tău nu este asociat cu eventualele rapoarte trimise de către tine, ele rămânând anonime pentru totdeauna 🔒",
+      noticeHTML: /*html*/ `
+        Folosind un cont Prisma Safety, ești de acord cu <a
+          class="text-primary"
+          href="https://www.prisma-safety.com/terms"
+          target="_blank"
+          rel="noopener">
+            Termenii și Condițiile
+        </a> și cu <a
+          class="text-primary"
+          href="https://www.prisma-safety.com/privacy"
+          target="_blank"
+          rel="noopener">
+            Politica de Confidențialitate
+        </a>.
+      `,
+    },
+    loggedin: {},
   },
 };

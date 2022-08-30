@@ -84,7 +84,7 @@ limitations under the License.
   {:else if $currentPage == "dataProtection"}
     <DataProtection />
   {:else}
-    <!-- <Map /> -->
+    <Map />
     <BottomControls />
   {/if}
 
